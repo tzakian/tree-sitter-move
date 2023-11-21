@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "nan": "^2.18.0"
+  },
+  "name": "tree-sitter-move",
+  "version": "1.0.0",
+  "description": "Tree sitter parser for Move",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.move",
+      "injection-regex": "move",
+      "file-types": [
+        "move"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ]
+}
