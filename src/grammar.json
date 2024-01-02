@@ -206,8 +206,12 @@
           "value": "friend"
         },
         {
-          "type": "SYMBOL",
-          "name": "module_access"
+          "type": "FIELD",
+          "name": "module",
+          "content": {
+            "type": "SYMBOL",
+            "name": "friend_access"
+          }
         },
         {
           "type": "STRING",
@@ -707,6 +711,18 @@
     "struct_definition": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "public"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "SYMBOL",
           "name": "_struct_signature"
@@ -2441,6 +2457,27 @@
         }
       ]
     },
+    "friend_access": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "local_module",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "fully_qualified_module",
+          "content": {
+            "type": "SYMBOL",
+            "name": "module_identity"
+          }
+        }
+      ]
+    },
     "macro_module_access": {
       "type": "SEQ",
       "members": [
@@ -2826,6 +2863,18 @@
         {
           "type": "STRING",
           "value": "let"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "mut"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "FIELD",
@@ -4691,10 +4740,10 @@
           },
           {
             "type": "FIELD",
-            "name": "field",
+            "name": "access",
             "content": {
               "type": "SYMBOL",
-              "name": "_field_identifier"
+              "name": "_expression_term"
             }
           }
         ]
@@ -5221,6 +5270,11 @@
       "name_expression",
       "call_expression",
       "pack_expression"
+    ],
+    [
+      "module_access",
+      "friend_access",
+      "_field_identifier"
     ]
   ],
   "precedences": [],

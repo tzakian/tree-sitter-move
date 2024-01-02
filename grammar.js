@@ -34,6 +34,7 @@ module.exports = grammar({
     [$._struct_identifier, $._variable_identifier, $._function_identifier],
     [$.function_type_parameters],
     [$.name_expression, $.call_expression, $.pack_expression],
+    [$.module_access, $.friend_access, $._field_identifier],
   ],
 
   rules: {
@@ -50,7 +51,7 @@ module.exports = grammar({
     ),
 
     // parse top-level decl modifiers
-    friend_declaration: $ => seq('friend', $.module_access, ';'),
+    friend_declaration: $ => seq('friend', field('module', $.friend_access), ';'),
     visibility_modifier: $ => choice('public', 'public(package)', 'public(friend)'),
     ability: $ => choice(
         'copy',
@@ -132,6 +133,7 @@ module.exports = grammar({
       ';'
     ),
     struct_definition: $ => seq(
+      optional('public'),
       $._struct_signature,
       field('struct_fields', $.struct_def_fields),
     ),
@@ -381,8 +383,12 @@ module.exports = grammar({
       ),
     ),
 
-    macro_module_access: $ => seq(field("access", $.module_access), "!"),
+    friend_access: $ => choice(
+      field('local_module', $.identifier),
+      field('fully_qualified_module', $.module_identity),
+    ),
 
+    macro_module_access: $ => seq(field("access", $.module_access), "!"),
 
     module_identity: $ => seq(
       field('address', choice($.address_literal, $._module_identifier)),
@@ -437,6 +443,7 @@ module.exports = grammar({
     ),
     let_statement: $ => seq(
       'let',
+      optional('mut'),
       field('binds', $.bind_list),
       optional(seq(':', field('type', $._type))),
       optional(seq('=', field('expr', $._expression)))
@@ -666,7 +673,7 @@ module.exports = grammar({
     dot_expression: $ => prec.left(PRECEDENCE.field, seq(
       field('expr', $._expression_term),
       '.',
-      field('field', $._field_identifier)
+        field('access', $._expression_term),
     )),
     index_expression: $ => prec.left(PRECEDENCE.call, seq(
       field('expr',

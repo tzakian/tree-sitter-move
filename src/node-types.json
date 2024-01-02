@@ -2131,7 +2131,7 @@
     "type": "dot_expression",
     "named": true,
     "fields": {
-      "expr": {
+      "access": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2217,12 +2217,88 @@
           }
         ]
       },
-      "field": {
+      "expr": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "field_identifier",
+            "type": "address_literal",
+            "named": true
+          },
+          {
+            "type": "annotate_expression",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "bool_literal",
+            "named": true
+          },
+          {
+            "type": "break_expression",
+            "named": true
+          },
+          {
+            "type": "byte_string_literal",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "continue_expression",
+            "named": true
+          },
+          {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
+            "type": "expression_list",
+            "named": true
+          },
+          {
+            "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "macro_call_expression",
+            "named": true
+          },
+          {
+            "type": "name_expression",
+            "named": true
+          },
+          {
+            "type": "num_literal",
+            "named": true
+          },
+          {
+            "type": "pack_expression",
+            "named": true
+          },
+          {
+            "type": "spec_block",
+            "named": true
+          },
+          {
+            "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_literal",
             "named": true
           }
         ]
@@ -2580,18 +2656,45 @@
     }
   },
   {
+    "type": "friend_access",
+    "named": true,
+    "fields": {
+      "fully_qualified_module": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "module_identity",
+            "named": true
+          }
+        ]
+      },
+      "local_module": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "friend_declaration",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "module_access",
-          "named": true
-        }
-      ]
+    "fields": {
+      "module": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "friend_access",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -7188,6 +7291,10 @@
   },
   {
     "type": "move",
+    "named": false
+  },
+  {
+    "type": "mut",
     "named": false
   },
   {

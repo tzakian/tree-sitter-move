@@ -8,6 +8,9 @@
 // This module is not currently accessible from user contracts, and is used only to record the JWK
 // state to the chain for auditability + restore from snapshot purposes.
 module sui::authenticator_state {
+    // friend bar;
+    // friend sui::coin;
+
     use std::string;
     use std::option::{Self, Option};
     use std::vector;
@@ -102,6 +105,8 @@ module sui::authenticator_state {
     fun string_bytes_lt(a: &String, b: &String): bool {
         let a_bytes = string::bytes(a);
         let b_bytes = string::bytes(b);
+
+        let X { l, t } = b;
 
         if (vector::length(a_bytes) < vector::length(b_bytes)) {
             true
@@ -345,7 +350,7 @@ module sui::authenticator_state {
                 j = j + 1;
             };
 
-            let max_epoch_for_iss = vector::borrow(&issuer_max_epochs, j);
+            let mut max_epoch_for_iss = vector::borrow(&issuer_max_epochs, j);
 
             // TODO: if the iss for this jwk has *no* jwks that meet the minimum epoch,
             // then expire nothing.
