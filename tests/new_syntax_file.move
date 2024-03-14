@@ -1,55 +1,38 @@
 module foo::bar {
-
     // Imports
-    
     use std::vector::foo;
-
     use fun Self::foo as X.f1;
     use fun a::m::foo as X.f2;
-
     use fun foo as Self::X.f3;
     use fun foo as a::m::X.f4;
-
     use fun foo as X.f5;
-
     public use fun Self::foo as X.g1;
     public use fun a::m::foo as X.g2;
-
     public use fun foo as Self::X.g3;
     public use fun foo as a::m::X.g4;
-
     public use fun foo as X.g5;
 
     // Types
-
     public struct X {}
-
     public struct Old<T: key + copy + store> has key {
         x: u64
     }
-
     public struct NewPost<T: key + copy + store> has key (u64)
-
     public struct NewPoster<T: key + copy + store>(u64) has key, store;
-
     public struct None()
-
     public enum NewEnum {
         V(),
         V1(u64, bool),
         V2 { x: u64, y: bool },
         V3
     }
-
     public enum NewEnum<T: key + copy + store> has key {
         NewVariant(u64),
         VariantNoParams,
         VariantEmptyParams(),
         VariantNamedParams { x: u64 },
     }
-
-    public fun new<T>(mut x: T): T {
-    }
+    public fun new<T>(mut x: T): T { }
 
     public fun new_let_mut(): u64 {
         let mut x = 0;
@@ -62,13 +45,11 @@ module foo::bar {
         let NewPoster(mut y, z, i) = x.new();
         let NewPoster<T>(mut y, z, i) = x.new();
         let NewPoster::Variant<T>(mut y, z, i) = x.new();
-
         match (s) {
             NewPoster::Variant(x) => something,
             NewPoster::Variant{ x } if true => something,
             y @ bar => @0x1,
         };
-
         x.foreach!(|y| { x = y; });
         assert!(x == 1, 6);
         x

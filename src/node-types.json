@@ -1241,7 +1241,7 @@
     "fields": {
       "bind_fields": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "bind_fields",
@@ -2603,6 +2603,20 @@
         "types": [
           {
             "type": "enum_identifier",
+            "named": true
+          }
+        ]
+      },
+      "postfix_ability_declarations": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "ability_decls",
             "named": true
           }
         ]
@@ -5407,11 +5421,11 @@
         "required": true,
         "types": [
           {
-            "type": "address_literal",
+            "type": "module_identifier",
             "named": true
           },
           {
-            "type": "module_identifier",
+            "type": "num_literal",
             "named": true
           }
         ]
@@ -7477,13 +7491,9 @@
     "named": true,
     "fields": {
       "ability_declarations": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": ";",
-            "named": false
-          },
           {
             "type": "ability_decls",
             "named": true
@@ -7496,6 +7506,20 @@
         "types": [
           {
             "type": "struct_identifier",
+            "named": true
+          }
+        ]
+      },
+      "postfix_ability_declarations": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "ability_decls",
             "named": true
           }
         ]

@@ -876,6 +876,31 @@
             "type": "SYMBOL",
             "name": "enum_variants"
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "postfix_ability_declarations",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "ability_decls"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ";"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -1065,7 +1090,7 @@
           "members": [
             {
               "type": "FIELD",
-              "name": "ability_declarations",
+              "name": "postfix_ability_declarations",
               "content": {
                 "type": "SEQ",
                 "members": [
@@ -2942,7 +2967,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "address_literal"
+                "name": "num_literal"
               },
               {
                 "type": "SYMBOL",
@@ -5665,12 +5690,20 @@
           ]
         },
         {
-          "type": "FIELD",
-          "name": "bind_fields",
-          "content": {
-            "type": "SYMBOL",
-            "name": "bind_fields"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "bind_fields",
+              "content": {
+                "type": "SYMBOL",
+                "name": "bind_fields"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -6157,6 +6190,10 @@
     [
       "break_expression",
       "block_identifier"
+    ],
+    [
+      "module_access",
+      "_variable_identifier"
     ]
   ],
   "precedences": [],

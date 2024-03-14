@@ -37,6 +37,7 @@ module.exports = grammar({
         [$.module_access, $.friend_access, $._field_identifier],
         [$.return_expression, $.block_identifier],
         [$.break_expression, $.block_identifier],
+        [$.module_access, $._variable_identifier],
     ],
 
     rules: {
@@ -158,6 +159,7 @@ module.exports = grammar({
             optional('public'),
             $._enum_signature,
             field('enum_variants', $.enum_variants),
+            optional(field('postfix_ability_declarations', seq($.ability_decls, ';'))),
         ),
         _enum_signature: $ => seq(
             'enum',
@@ -189,7 +191,7 @@ module.exports = grammar({
             optional('public'),
             $._struct_signature,
             field('struct_fields', $.datatype_fields),
-            optional(field('ability_declarations', seq($.ability_decls, ';'))),
+            optional(field('postfix_ability_declarations', seq($.ability_decls, ';'))),
         ),
         field_annotation: $ => seq(
             field('field', $._field_identifier),
@@ -458,7 +460,7 @@ module.exports = grammar({
         macro_module_access: $ => seq(field("access", $.module_access), "!"),
 
         module_identity: $ => seq(
-            field('address', choice($.address_literal, $._module_identifier)),
+            field('address', choice($.num_literal, $._module_identifier)),
             '::',
             field('module', $._module_identifier)
         ),
@@ -833,7 +835,7 @@ module.exports = grammar({
         bind_unpack: $ => seq(
             $.module_access,
             optional(field('type_arguments', $.type_arguments)),
-            field('bind_fields', $.bind_fields),
+            optional(field('bind_fields', $.bind_fields)),
         ),
         bind_fields: $ => choice(
             $.bind_positional_fields,
