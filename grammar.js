@@ -159,7 +159,7 @@ module.exports = grammar({
             optional('public'),
             $._enum_signature,
             field('enum_variants', $.enum_variants),
-            optional(field('postfix_ability_declarations', seq($.ability_decls, ';'))),
+            optional(field('postfix_ability_declarations', $.postfix_ability_decls)),
         ),
         _enum_signature: $ => seq(
             'enum',
@@ -191,7 +191,7 @@ module.exports = grammar({
             optional('public'),
             $._struct_signature,
             field('struct_fields', $.datatype_fields),
-            optional(field('postfix_ability_declarations', seq($.ability_decls, ';'))),
+            optional(field('postfix_ability_declarations', $.postfix_ability_decls)),
         ),
         field_annotation: $ => seq(
             field('field', $._field_identifier),
@@ -201,6 +201,11 @@ module.exports = grammar({
         ability_decls: $ => seq(
             'has',
             sepBy(',', $.ability),
+        ),
+        postfix_ability_decls: $ => seq(
+            'has',
+            sepBy(',', $.ability),
+            ';',
         ),
 
         _struct_signature: $ => seq(

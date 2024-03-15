@@ -884,17 +884,8 @@
               "type": "FIELD",
               "name": "postfix_ability_declarations",
               "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "ability_decls"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ";"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "postfix_ability_decls"
               }
             },
             {
@@ -1092,17 +1083,8 @@
               "type": "FIELD",
               "name": "postfix_ability_declarations",
               "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "ability_decls"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ";"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "postfix_ability_decls"
               }
             },
             {
@@ -1176,6 +1158,52 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    "postfix_ability_decls": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "has"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "ability"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "ability"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ";"
         }
       ]
     },

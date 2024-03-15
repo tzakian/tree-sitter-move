@@ -2608,15 +2608,11 @@
         ]
       },
       "postfix_ability_declarations": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "ability_decls",
+            "type": "postfix_ability_decls",
             "named": true
           }
         ]
@@ -5742,6 +5738,21 @@
     }
   },
   {
+    "type": "postfix_ability_decls",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "ability",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "primitive_type",
     "named": true,
     "fields": {}
@@ -7511,15 +7522,11 @@
         ]
       },
       "postfix_ability_declarations": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "ability_decls",
+            "type": "postfix_ability_decls",
             "named": true
           }
         ]
