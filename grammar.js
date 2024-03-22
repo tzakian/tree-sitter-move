@@ -239,7 +239,7 @@ module.exports = grammar({
             field('name', $._function_identifier),
             optional(field('type_parameters', $.type_parameters)),
             field('parameters', $.function_parameters),
-            optional(seq(':', field('return_type', $._type))),
+            optional(field('return_type', $.ret_type)),
         ),
         function_definition: $ => seq(
             $._function_signature,
@@ -253,7 +253,7 @@ module.exports = grammar({
             field('name', $._function_identifier),
             optional(field('type_parameters', $.type_parameters)),
             field('parameters', $.function_parameters),
-            optional(seq(':', field('return_type', $._type))),
+            optional(field('return_type', $.ret_type)),
         ),
         function_parameters: $ => seq(
             '(',
@@ -404,7 +404,7 @@ module.exports = grammar({
             field('name', $._function_identifier),
             optional(field('type_parameters', $.type_parameters)),
             field('parameters', $.function_parameters),
-            seq(':', field('return_type', $._type)),
+            field('return_type', $.ret_type),
         ),
 
         // Spec block end
@@ -439,6 +439,7 @@ module.exports = grammar({
             'signer',
             'bytearray',
         ),
+        ret_type: $ => seq(':', $._type),
 
         module_access: $ => choice(
             // macro variable access
