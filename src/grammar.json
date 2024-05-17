@@ -1036,6 +1036,18 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "public"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": "native"
         },
@@ -6208,6 +6220,10 @@
     [
       "module_access",
       "_variable_identifier"
+    ],
+    [
+      "visibility_modifier",
+      "native_struct_definition"
     ]
   ],
   "precedences": [],

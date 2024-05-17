@@ -38,6 +38,7 @@ module.exports = grammar({
         [$.return_expression, $.block_identifier],
         [$.break_expression, $.block_identifier],
         [$.module_access, $._variable_identifier],
+        [$.visibility_modifier, $.native_struct_definition],
     ],
 
     rules: {
@@ -183,9 +184,10 @@ module.exports = grammar({
             $.struct_definition,
         ),
         native_struct_definition: $ => seq(
+            optional('public'),
             'native',
             $._struct_signature,
-            ';'
+            ';',
         ),
         struct_definition: $ => seq(
             optional('public'),
