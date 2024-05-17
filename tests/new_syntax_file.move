@@ -32,7 +32,24 @@ module foo::bar {
         VariantEmptyParams(),
         VariantNamedParams { x: u64 },
     }
+
+    public struct X {
+        `for`: u64,
+        `let`: u64,
+        `struct`: u64,
+    }
+
     public fun new<T>(mut x: T): T { }
+
+    public fun `let`(mut `mut`: u64) {
+        let `let` = `mut`;
+        let `for` = `mut` + `let` + `let` + `mut`;
+        let `struct` = `let` + `for` + `let` + `mut`;
+        let `enum` = `struct` + `let` + `for` + `let` + `mut`;
+        let `let` = `let` + `for` + `let` + `mut`;
+        let `let` = `let` * `mut` + `let` / `for` - `struct`;
+    }
+
 
     public fun new_let_mut(): u64 {
         let mut x = 0;

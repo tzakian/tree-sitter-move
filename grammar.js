@@ -891,7 +891,7 @@ module.exports = grammar({
         _field_identifier: $ => alias($.identifier, $.field_identifier),
         _type_identifier: $ => alias($.identifier, $.type_identifier),
         _type_parameter_identifier: $ => alias($.identifier, $.type_parameter_identifier),
-        identifier: $ => /[a-zA-Z_][0-9a-zA-Z_]*/,
+        identifier: $ => /(`)?[a-zA-Z_][0-9a-zA-Z_]*(`)?/,
         macro_identifier: $ => /[a-zA-Z_][0-9a-zA-Z_]*!/,
         _reserved_identifier: $ => choice($._forall, $._exists),
 
