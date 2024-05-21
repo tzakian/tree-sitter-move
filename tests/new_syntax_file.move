@@ -12,6 +12,14 @@ module foo::bar {
     public use fun foo as a::m::X.g4;
     public use fun foo as X.g5;
 
+    use std::{
+        ascii::{Self, String},
+        vector::push_back,
+        vector::pop_back as p,
+        coin,
+        object as O,
+    };
+
     // Types
     public struct X {}
     public struct Old<T: key + copy + store> has key {
@@ -50,6 +58,20 @@ module foo::bar {
         let `let` = `let` * `mut` + `let` / `for` - `struct`;
     }
 
+    public fun foo() {
+        let x = (x: C<u64>).y;
+        *if (cond) { &0 } else { &mut 0 };
+        ()
+    }
+
+    fun f(): u64 {
+        1 as u64;
+        1 + 2 as u64;
+        (1 + 2) as u64;
+        1 + (2 as u64);
+        v[1 as u64];
+        1 as u64 + 2;
+    }
 
     public fun new_let_mut(): u64 {
         let mut x = 0;

@@ -680,10 +680,6 @@
             "named": true
           },
           {
-            "type": "cast_expression",
-            "named": true
-          },
-          {
             "type": "continue_expression",
             "named": true
           },
@@ -1629,11 +1625,23 @@
         "required": true,
         "types": [
           {
+            "type": "abort_expression",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
           {
             "type": "annotate_expression",
+            "named": true
+          },
+          {
+            "type": "assign_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
             "named": true
           },
           {
@@ -1685,11 +1693,31 @@
             "named": true
           },
           {
+            "type": "identified_expression",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "index_expression",
             "named": true
           },
           {
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "loop_expression",
+            "named": true
+          },
+          {
             "type": "macro_call_expression",
+            "named": true
+          },
+          {
+            "type": "match_expression",
             "named": true
           },
           {
@@ -1709,6 +1737,14 @@
             "named": true
           },
           {
+            "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
             "type": "spec_block",
             "named": true
           },
@@ -1722,6 +1758,10 @@
           },
           {
             "type": "vector_literal",
+            "named": true
+          },
+          {
+            "type": "while_expression",
             "named": true
           }
         ]
@@ -1762,10 +1802,6 @@
           },
           {
             "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "cast_expression",
             "named": true
           },
           {
@@ -2296,11 +2332,23 @@
         "required": true,
         "types": [
           {
+            "type": "abort_expression",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
           {
             "type": "annotate_expression",
+            "named": true
+          },
+          {
+            "type": "assign_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
             "named": true
           },
           {
@@ -2352,11 +2400,31 @@
             "named": true
           },
           {
+            "type": "identified_expression",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "index_expression",
             "named": true
           },
           {
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "loop_expression",
+            "named": true
+          },
+          {
             "type": "macro_call_expression",
+            "named": true
+          },
+          {
+            "type": "match_expression",
             "named": true
           },
           {
@@ -2376,6 +2444,14 @@
             "named": true
           },
           {
+            "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
             "type": "spec_block",
             "named": true
           },
@@ -2389,6 +2465,10 @@
           },
           {
             "type": "vector_literal",
+            "named": true
+          },
+          {
+            "type": "while_expression",
             "named": true
           }
         ]
@@ -2429,10 +2509,6 @@
           },
           {
             "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "cast_expression",
             "named": true
           },
           {
@@ -2515,10 +2591,6 @@
           },
           {
             "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "cast_expression",
             "named": true
           },
           {
@@ -3897,10 +3969,6 @@
           },
           {
             "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "cast_expression",
             "named": true
           },
           {
@@ -6162,10 +6230,6 @@
             "named": true
           },
           {
-            "type": "cast_expression",
-            "named": true
-          },
-          {
             "type": "continue_expression",
             "named": true
           },
@@ -7625,11 +7689,23 @@
         "required": true,
         "types": [
           {
+            "type": "abort_expression",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
           {
             "type": "annotate_expression",
+            "named": true
+          },
+          {
+            "type": "assign_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
             "named": true
           },
           {
@@ -7681,11 +7757,31 @@
             "named": true
           },
           {
+            "type": "identified_expression",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "index_expression",
             "named": true
           },
           {
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "loop_expression",
+            "named": true
+          },
+          {
             "type": "macro_call_expression",
+            "named": true
+          },
+          {
+            "type": "match_expression",
             "named": true
           },
           {
@@ -7705,6 +7801,14 @@
             "named": true
           },
           {
+            "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
             "type": "spec_block",
             "named": true
           },
@@ -7718,6 +7822,10 @@
           },
           {
             "type": "vector_literal",
+            "named": true
+          },
+          {
+            "type": "while_expression",
             "named": true
           }
         ]
@@ -7867,10 +7975,30 @@
       },
       "member": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "module": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "use_member": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "use_member",
             "named": true
           }
         ]
@@ -7933,6 +8061,20 @@
     "type": "use_module_members",
     "named": true,
     "fields": {
+      "address": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "module_identifier",
+            "named": true
+          },
+          {
+            "type": "num_literal",
+            "named": true
+          }
+        ]
+      },
       "use_member": {
         "multiple": true,
         "required": true,
@@ -7946,7 +8088,7 @@
     },
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "module_identity",
@@ -8546,6 +8688,10 @@
   {
     "type": "else",
     "named": false
+  },
+  {
+    "type": "empty_line",
+    "named": true
   },
   {
     "type": "ensures",

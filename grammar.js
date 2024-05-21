@@ -23,11 +23,13 @@ const PRECEDENCE = {
     unary: 13,
     field: 14,
     call: 15,
+    apply_type: 15,
+    as: 16,
 }
 
 module.exports = grammar({
     name: 'move',
-    extras: $ => [/\s/, $.line_comment, $.block_comment],
+    extras: $ => [/\s/, $.line_comment, $.block_comment, $.empty_line],
     word: $ => $.identifier,
     supertypes: $ => [$._spec_block_target],
     conflicts: $ => [
@@ -39,6 +41,7 @@ module.exports = grammar({
         [$.break_expression, $.block_identifier],
         [$.module_access, $._variable_identifier],
         [$.visibility_modifier, $.native_struct_definition],
+        [$._expression, $._binary_operand],
     ],
 
     rules: {
@@ -56,10 +59,23 @@ module.exports = grammar({
         ),
         use_module: $ => seq($.module_identity, optional(seq('as', field('alias', $._module_identifier)))),
         use_module_member: $ => seq($.module_identity, '::', field('use_member', $.use_member)),
-        use_module_members: $ => seq($.module_identity, '::', '{', sepBy1(',', field('use_member', $.use_member)), '}'),
-        use_member: $ => seq(
-            field('member', $.identifier),
-            optional(seq('as', field('alias', $.identifier)))
+        use_module_members: $ => choice(
+            seq(field('address', choice($.num_literal, $._module_identifier)), '::', '{', sepBy1(',', field('use_member', $.use_member)), '}'),
+            seq($.module_identity, '::', '{', sepBy1(',', field('use_member', $.use_member)), '}'),
+        ),
+        use_member: $ => choice(
+            seq(
+                field('module', $.identifier),
+                '::',
+                '{',
+                sepBy1(',', field('use_member', $.use_member)),
+                '}'
+            ),
+            seq(field('module', $.identifier), '::', field('member', $.identifier), optional(seq('as', field('alias', $.identifier)))),
+            seq(
+                field('member', $.identifier),
+                optional(seq('as', field('alias', $.identifier)))
+            ),
         ),
 
         // parse top-level decl modifiers
@@ -420,10 +436,10 @@ module.exports = grammar({
             $.function_type,
             $.primitive_type,
         ),
-        apply_type: $ => seq(
+        apply_type: $ => prec.left(PRECEDENCE.apply_type, seq(
             $.module_access,
             optional(field('type_arguments', $.type_arguments)),
-        ),
+        )),
         ref_type: $ => seq(
             field('mutable', choice('&', '&mut')),
             $._type
@@ -551,6 +567,7 @@ module.exports = grammar({
             // unary expression is included in binary_op,
             $._unary_expression,
             $.binary_expression,
+            $.cast_expression,
             $.quantifier_expression,
             $.identified_expression,
             $.match_expression,
@@ -661,6 +678,7 @@ module.exports = grammar({
         _binary_operand: $ => choice(
             $._unary_expression,
             $.binary_expression,
+            $.cast_expression,
         ),
         binary_expression: $ => {
             const table = [
@@ -706,19 +724,19 @@ module.exports = grammar({
         ),
         unary_expression: $ => seq(
             field('op', $.unary_op),
-            field('expr', $._unary_expression)
+            field('expr', $._expression)
         ),
         unary_op: $ => choice('!'),
 
         // dereference
-        dereference_expression: $ => prec(PRECEDENCE.unary, seq(
+        dereference_expression: $ => prec.right(PRECEDENCE.unary, seq(
             '*',
-            field('expr', $._unary_expression),
+            field('expr', $._expression),
         )),
         // borrow
         borrow_expression: $ => prec(PRECEDENCE.unary, seq(
             choice('&', '&mut'),
-            field('expr', $._unary_expression),
+            field('expr', $._expression),
         )),
         // move or copy
         move_or_copy_expression: $ => prec(PRECEDENCE.unary, seq(
@@ -737,7 +755,6 @@ module.exports = grammar({
             $.unit_expression,
             $.expression_list,
             $.annotate_expression,
-            $.cast_expression,
             $.block,
             $.spec_block,
 
@@ -787,13 +804,11 @@ module.exports = grammar({
 
         expression_list: $ => seq('(', sepBy1(',', $._expression), ')'),
         unit_expression: $ => seq('(', ')'),
-        cast_expression: $ => seq(
-            '(',
+        cast_expression: $ => prec.left(PRECEDENCE.as, seq(
             field('expr', $._expression),
             'as',
             field('ty', $._type),
-            ')'
-        ),
+        )),
         annotate_expression: $ => seq(
             '(',
             field('expr', $._expression),
@@ -900,6 +915,7 @@ module.exports = grammar({
         line_comment: $ => token(seq(
             '//', /.*/
         )),
+        empty_line: $ => /[\n\r]/,
         // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
         block_comment: $ => token(seq(
             '/*',
