@@ -5,8 +5,17 @@
     "source_file": {
       "type": "REPEAT",
       "content": {
-        "type": "SYMBOL",
-        "name": "module_definition"
+        "type": "CHOICE",
+        "members": [
+          {
+            "name": "annotation",
+            "type": "SYMBOL"
+          },
+          {
+            "name": "module_definition",
+            "type": "SYMBOL"
+          }
+        ]
       }
     },
     "use_declaration": {
@@ -523,21 +532,6 @@
     "module_definition": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SYMBOL",
-                "name": "annotation"
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
         {
           "type": "STRING",
           "value": "module"
@@ -6368,7 +6362,7 @@
     },
     "empty_line": {
       "type": "PATTERN",
-      "value": "[\\n\\r]"
+      "value": "[\\n\\r][\\n\\r]"
     },
     "block_comment": {
       "type": "TOKEN",
@@ -6458,4 +6452,3 @@
     "_spec_block_target"
   ]
 }
-

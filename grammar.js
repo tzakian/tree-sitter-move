@@ -45,7 +45,7 @@ module.exports = grammar({
     ],
 
     rules: {
-        source_file: $ => repeat($.module_definition),
+        source_file: $ => repeat(choice($.module_definition, $.annotation)),
 
         // parse use declarations
         use_declaration: $ => seq(
@@ -90,7 +90,6 @@ module.exports = grammar({
 
         module_definition: $ => {
             return seq(
-                optional(repeat($.annotation)),
                 'module',
                 field('module_identity', $.module_identity),
                 field('module_body', $.module_body),
@@ -915,7 +914,7 @@ module.exports = grammar({
         line_comment: $ => token(seq(
             '//', /.*/
         )),
-        empty_line: $ => /[\n\r]/,
+        empty_line: $ => /[\n\r][\n\r]/,
         // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
         block_comment: $ => token(seq(
             '/*',
