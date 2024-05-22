@@ -40,7 +40,7 @@ module.exports = grammar({
         [$.return_expression, $.block_identifier],
         [$.break_expression, $.block_identifier],
         [$.module_access, $._variable_identifier],
-        [$.visibility_modifier, $.native_struct_definition],
+        [$.modifier, $.native_struct_definition],
         [$._expression, $._binary_operand],
     ],
 
@@ -80,7 +80,7 @@ module.exports = grammar({
 
         // parse top-level decl modifiers
         friend_declaration: $ => seq('friend', field('module', $.friend_access), ';'),
-        visibility_modifier: $ => choice('public', 'public(package)', 'public(friend)', 'entry'),
+        modifier: $ => choice('public', 'public(package)', 'public(friend)', 'entry', 'native'),
         ability: $ => choice(
             'copy',
             'drop',
@@ -239,19 +239,17 @@ module.exports = grammar({
             $.function_definition,
         ),
         native_function_definition: $ => seq(
-            optional($.visibility_modifier),
-            'native',
             $._function_signature,
             ';'
         ),
         macro_function_definition: $ => seq(
-            optional($.visibility_modifier),
+            optional($.modifier),
             'macro',
             $._macro_signature,
             field('body', $.block)
         ),
         _macro_signature: $ => seq(
-            optional($.visibility_modifier),
+            optional($.modifier),
             'fun',
             field('name', $._function_identifier),
             optional(field('type_parameters', $.type_parameters)),
@@ -263,8 +261,8 @@ module.exports = grammar({
             field('body', $.block)
         ),
         _function_signature: $ => seq(
-            optional($.visibility_modifier),
-            optional($.visibility_modifier),
+            optional($.modifier),
+            optional($.modifier),
             'fun',
             field('name', $._function_identifier),
             optional(field('type_parameters', $.type_parameters)),

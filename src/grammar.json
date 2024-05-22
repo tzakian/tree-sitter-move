@@ -482,7 +482,7 @@
         }
       ]
     },
-    "visibility_modifier": {
+    "modifier": {
       "type": "CHOICE",
       "members": [
         {
@@ -500,6 +500,10 @@
         {
           "type": "STRING",
           "value": "entry"
+        },
+        {
+          "type": "STRING",
+          "value": "native"
         }
       ]
     },
@@ -1467,22 +1471,6 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "visibility_modifier"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "native"
-        },
-        {
           "type": "SYMBOL",
           "name": "_function_signature"
         },
@@ -1500,7 +1488,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "visibility_modifier"
+              "name": "modifier"
             },
             {
               "type": "BLANK"
@@ -1533,7 +1521,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "visibility_modifier"
+              "name": "modifier"
             },
             {
               "type": "BLANK"
@@ -1619,7 +1607,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "visibility_modifier"
+              "name": "modifier"
             },
             {
               "type": "BLANK"
@@ -1631,7 +1619,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "visibility_modifier"
+              "name": "modifier"
             },
             {
               "type": "BLANK"
@@ -6416,7 +6404,7 @@
       "_variable_identifier"
     ],
     [
-      "visibility_modifier",
+      "modifier",
       "native_struct_definition"
     ],
     [

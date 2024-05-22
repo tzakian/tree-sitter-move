@@ -3188,7 +3188,7 @@
       "required": false,
       "types": [
         {
-          "type": "visibility_modifier",
+          "type": "modifier",
           "named": true
         }
       ]
@@ -4831,7 +4831,7 @@
       "required": false,
       "types": [
         {
-          "type": "visibility_modifier",
+          "type": "modifier",
           "named": true
         }
       ]
@@ -5318,6 +5318,11 @@
     }
   },
   {
+    "type": "modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "module_access",
     "named": true,
     "fields": {
@@ -5567,7 +5572,7 @@
       "required": false,
       "types": [
         {
-          "type": "visibility_modifier",
+          "type": "modifier",
           "named": true
         }
       ]
@@ -8199,11 +8204,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "visibility_modifier",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "while_expression",
