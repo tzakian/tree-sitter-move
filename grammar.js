@@ -29,7 +29,7 @@ const PRECEDENCE = {
 
 module.exports = grammar({
     name: 'move',
-    extras: $ => [/\s/, $.line_comment, $.block_comment, $.empty_line],
+    extras: $ => [$._whitespace, $.line_comment, $.block_comment, $.empty_line, $.annotation],
     word: $ => $.identifier,
     supertypes: $ => [$._spec_block_target],
     conflicts: $ => [
@@ -45,7 +45,7 @@ module.exports = grammar({
     ],
 
     rules: {
-        source_file: $ => repeat(choice($.module_definition, $.annotation)),
+        source_file: $ => repeat($.module_definition),
 
         // parse use declarations
         use_declaration: $ => seq(
@@ -80,7 +80,7 @@ module.exports = grammar({
 
         // parse top-level decl modifiers
         friend_declaration: $ => seq('friend', field('module', $.friend_access), ';'),
-        visibility_modifier: $ => choice('public', 'public(package)', 'public(friend)'),
+        visibility_modifier: $ => choice('public', 'public(package)', 'public(friend)', 'entry'),
         ability: $ => choice(
             'copy',
             'drop',
@@ -99,7 +99,7 @@ module.exports = grammar({
             return seq(
                 '{',
                 repeat(
-                    seq(optional(repeat($.annotation)), choice(
+                    choice(
                         $.use_declaration,
                         $.friend_declaration,
                         $.constant,
@@ -107,7 +107,7 @@ module.exports = grammar({
                         $._struct_item,
                         $._enum_item,
                         $.spec_block,
-                    ))),
+                    )),
                 '}'
             );
         },
@@ -263,9 +263,8 @@ module.exports = grammar({
             field('body', $.block)
         ),
         _function_signature: $ => seq(
-            optional('entry'),
             optional($.visibility_modifier),
-            optional('entry'),
+            optional($.visibility_modifier),
             'fun',
             field('name', $._function_identifier),
             optional(field('type_parameters', $.type_parameters)),
@@ -914,7 +913,8 @@ module.exports = grammar({
         line_comment: $ => token(seq(
             '//', /.*/
         )),
-        empty_line: $ => /[\n\r][\n\r]/,
+        empty_line: $ => token(seq(/[\n\r][\n\r]/)),
+        _whitespace: $ => /\s/,
         // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
         block_comment: $ => token(seq(
             '/*',

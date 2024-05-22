@@ -47,6 +47,7 @@ module foo::bar {
         `struct`: u64,
     }
 
+    #[syntax(index)]
     public fun new<T>(mut x: T): T { }
 
     public fun `let`(mut `mut`: u64) {
@@ -151,7 +152,7 @@ module foo::bar {
         None().ignore!()
     }
 
-    entry fun main() {
+    public entry fun main() {
         let v = new!(10, |i| i);
         assert!(sum!(&v) == 45, 0);
     }

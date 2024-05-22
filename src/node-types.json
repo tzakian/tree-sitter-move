@@ -3184,7 +3184,7 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
@@ -5362,10 +5362,6 @@
       "required": false,
       "types": [
         {
-          "type": "annotation",
-          "named": true
-        },
-        {
           "type": "constant",
           "named": true
         },
@@ -6279,10 +6275,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "annotation",
-          "named": true
-        },
         {
           "type": "module_definition",
           "named": true

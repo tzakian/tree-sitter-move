@@ -5,17 +5,8 @@
     "source_file": {
       "type": "REPEAT",
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "name": "annotation",
-            "type": "SYMBOL"
-          },
-          {
-            "name": "module_definition",
-            "type": "SYMBOL"
-          }
-        ]
+        "type": "SYMBOL",
+        "name": "module_definition"
       }
     },
     "use_declaration": {
@@ -505,6 +496,10 @@
         {
           "type": "STRING",
           "value": "public(friend)"
+        },
+        {
+          "type": "STRING",
+          "value": "entry"
         }
       ]
     },
@@ -564,55 +559,35 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "SEQ",
+            "type": "CHOICE",
             "members": [
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "REPEAT",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "annotation"
-                    }
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "use_declaration"
               },
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "use_declaration"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "friend_declaration"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "constant"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_function_item"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_struct_item"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_enum_item"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "spec_block"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "friend_declaration"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "constant"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_function_item"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_struct_item"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_enum_item"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "spec_block"
               }
             ]
           }
@@ -1643,18 +1618,6 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "entry"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
               "type": "SYMBOL",
               "name": "visibility_modifier"
             },
@@ -1667,8 +1630,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "entry"
+              "type": "SYMBOL",
+              "name": "visibility_modifier"
             },
             {
               "type": "BLANK"
@@ -6361,8 +6324,20 @@
       }
     },
     "empty_line": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[\\n\\r][\\n\\r]"
+          }
+        ]
+      }
+    },
+    "_whitespace": {
       "type": "PATTERN",
-      "value": "[\\n\\r][\\n\\r]"
+      "value": "\\s"
     },
     "block_comment": {
       "type": "TOKEN",
@@ -6387,8 +6362,8 @@
   },
   "extras": [
     {
-      "type": "PATTERN",
-      "value": "\\s"
+      "type": "SYMBOL",
+      "name": "_whitespace"
     },
     {
       "type": "SYMBOL",
@@ -6401,6 +6376,10 @@
     {
       "type": "SYMBOL",
       "name": "empty_line"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "annotation"
     }
   ],
   "conflicts": [
@@ -6452,3 +6431,4 @@
     "_spec_block_target"
   ]
 }
+
