@@ -4038,45 +4038,58 @@
       ]
     },
     "return_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "return"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "label",
-              "content": {
-                "type": "SYMBOL",
-                "name": "label"
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "return"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "label",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "label"
+                }
+              },
+              {
+                "type": "BLANK"
               }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "return",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_expression_term"
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "return",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_expression_term"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_expression"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "BLANK"
               }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
+            ]
+          }
+        ]
+      }
     },
     "abort_expression": {
       "type": "SEQ",
@@ -5024,29 +5037,33 @@
       ]
     },
     "_unary_expression": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "unary_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "borrow_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dereference_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "move_or_copy_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_expression_term"
-        }
-      ]
+      "type": "PREC",
+      "value": 10,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "unary_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "borrow_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "dereference_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "move_or_copy_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression_term"
+          }
+        ]
+      }
     },
     "unary_expression": {
       "type": "SEQ",
@@ -5217,10 +5234,6 @@
         {
           "type": "SYMBOL",
           "name": "index_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "if_expression"
         }
       ]
     },
@@ -6376,36 +6389,12 @@
   ],
   "conflicts": [
     [
-      "_struct_identifier",
-      "_enum_identifier",
-      "_variant_identifier",
-      "_variable_identifier",
-      "_function_identifier"
-    ],
-    [
-      "_expression_term",
-      "_expression"
-    ],
-    [
       "function_type_parameters"
     ],
     [
       "name_expression",
       "call_expression",
       "pack_expression"
-    ],
-    [
-      "module_access",
-      "friend_access",
-      "_field_identifier"
-    ],
-    [
-      "return_expression",
-      "block_identifier"
-    ],
-    [
-      "break_expression",
-      "block_identifier"
     ],
     [
       "module_access",

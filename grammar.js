@@ -33,12 +33,12 @@ module.exports = grammar({
     word: $ => $.identifier,
     supertypes: $ => [$._spec_block_target],
     conflicts: $ => [
-        [$._struct_identifier, $._enum_identifier, $._variant_identifier, $._variable_identifier, $._function_identifier],
+        // [$._struct_identifier, $._enum_identifier, $._variant_identifier, $._variable_identifier, $._function_identifier],
         [$.function_type_parameters],
         [$.name_expression, $.call_expression, $.pack_expression],
-        [$.module_access, $.friend_access, $._field_identifier],
-        [$.return_expression, $.block_identifier],
-        [$.break_expression, $.block_identifier],
+        // [$.module_access, $.friend_access, $._field_identifier],
+        // [$.return_expression, $.block_identifier],
+        // [$.break_expression, $.block_identifier],
         [$.module_access, $._variable_identifier],
         [$.modifier, $.native_struct_definition],
         [$._expression, $._binary_operand],
@@ -625,11 +625,11 @@ module.exports = grammar({
         loop_expression: $ => seq('loop', field('body', $._expression)),
 
         // return expression
-        return_expression: $ => seq(
+        return_expression: $ => prec.left(seq(
             'return',
             optional(field('label', $.label)),
-            optional(field('return', $._expression_term))
-        ),
+            optional(field('return', choice($._expression_term, $._expression)))
+        )),
 
         // abort expression
         abort_expression: $ => seq('abort', field('abort', $._expression)),
@@ -711,13 +711,13 @@ module.exports = grammar({
             return binary_expression;
         },
 
-        _unary_expression: $ => choice(
+        _unary_expression: $ => prec(10, choice(
             $.unary_expression,
             $.borrow_expression,
             $.dereference_expression,
             $.move_or_copy_expression,
             $._expression_term,
-        ),
+        )),
         unary_expression: $ => seq(
             field('op', $.unary_op),
             field('expr', $._expression)
