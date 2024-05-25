@@ -700,6 +700,10 @@
             "named": true
           },
           {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "index_expression",
             "named": true
           },
@@ -958,6 +962,10 @@
             "named": true
           },
           {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "index_expression",
             "named": true
           },
@@ -1071,6 +1079,10 @@
           },
           {
             "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {
@@ -1821,6 +1833,10 @@
             "named": true
           },
           {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "index_expression",
             "named": true
           },
@@ -2528,6 +2544,10 @@
             "named": true
           },
           {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "index_expression",
             "named": true
           },
@@ -2607,6 +2627,10 @@
           },
           {
             "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {
@@ -3985,6 +4009,10 @@
           },
           {
             "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {
@@ -6234,6 +6262,10 @@
           },
           {
             "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {

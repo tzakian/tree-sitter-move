@@ -5217,6 +5217,10 @@
         {
           "type": "SYMBOL",
           "name": "index_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_expression"
         }
       ]
     },
@@ -6379,6 +6383,10 @@
       "_function_identifier"
     ],
     [
+      "_expression_term",
+      "_expression"
+    ],
+    [
       "function_type_parameters"
     ],
     [
@@ -6419,4 +6427,3 @@
     "_spec_block_target"
   ]
 }
-
