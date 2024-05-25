@@ -33,12 +33,9 @@ module.exports = grammar({
     word: $ => $.identifier,
     supertypes: $ => [$._spec_block_target],
     conflicts: $ => [
-        // [$._struct_identifier, $._enum_identifier, $._variant_identifier, $._variable_identifier, $._function_identifier],
+        [$._expression, $._expression_term],
         [$.function_type_parameters],
         [$.name_expression, $.call_expression, $.pack_expression],
-        // [$.module_access, $.friend_access, $._field_identifier],
-        // [$.return_expression, $.block_identifier],
-        // [$.break_expression, $.block_identifier],
         [$.module_access, $._variable_identifier],
         [$.modifier, $.native_struct_definition],
         [$._expression, $._binary_operand],
@@ -753,6 +750,7 @@ module.exports = grammar({
             $.annotate_expression,
             $.block,
             $.spec_block,
+            $.if_expression,
 
             $.dot_expression,
             $.index_expression,

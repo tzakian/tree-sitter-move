@@ -5229,6 +5229,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "if_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "dot_expression"
         },
         {
@@ -6388,6 +6392,10 @@
     }
   ],
   "conflicts": [
+    [
+      "_expression",
+      "_expression_term"
+    ],
     [
       "function_type_parameters"
     ],
