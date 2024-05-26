@@ -7984,7 +7984,18 @@
   {
     "type": "use_declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "struct_visibility": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "public",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": true,
@@ -8265,7 +8276,18 @@
   {
     "type": "vector_literal",
     "named": true,
-    "fields": {},
+    "fields": {
+      "type_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_parameters",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
@@ -9008,7 +9030,7 @@
     "named": true
   },
   {
-    "type": "vector[",
+    "type": "vector",
     "named": false
   },
   {

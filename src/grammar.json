@@ -16,8 +16,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "public"
+              "type": "FIELD",
+              "name": "struct_visibility",
+              "content": {
+                "type": "STRING",
+                "value": "public"
+              }
             },
             {
               "type": "BLANK"
@@ -6165,7 +6169,27 @@
       "members": [
         {
           "type": "STRING",
-          "value": "vector["
+          "value": "vector"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "type_parameters",
+              "content": {
+                "type": "SYMBOL",
+                "name": "type_parameters"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "["
         },
         {
           "type": "SEQ",

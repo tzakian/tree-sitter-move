@@ -46,7 +46,7 @@ module.exports = grammar({
 
         // parse use declarations
         use_declaration: $ => seq(
-            optional('public'),
+            optional(field('struct_visibility', 'public')),
             'use', choice($.use_fun, $.use_module, $.use_module_member, $.use_module_members), ';'),
         use_fun: $ => seq(
             'fun',
@@ -890,7 +890,7 @@ module.exports = grammar({
         num_literal: $ => choice(/[0-9][0-9_]*(?:u8|u16|u32|u64|u128|u256)?/, /0x[a-fA-F0-9_]+/),
         hex_string_literal: $ => /x"[0-9a-fA-F]*"/,
         byte_string_literal: $ => /b"(\\.|[^\\"])*"/,
-        vector_literal: $ => seq("vector[", sepBy(",", $._literal_value), "]"),
+        vector_literal: $ => seq("vector", optional(field('type_parameters', $.type_parameters)), "[", sepBy(",", $._literal_value), "]"),
         _module_identifier: $ => alias($.identifier, $.module_identifier),
         _struct_identifier: $ => alias($.identifier, $.struct_identifier),
         _enum_identifier: $ => alias($.identifier, $.enum_identifier),
