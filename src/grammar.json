@@ -1491,8 +1491,11 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "modifier"
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "modifier"
+              }
             },
             {
               "type": "BLANK"
@@ -1524,8 +1527,11 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "modifier"
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "modifier"
+              }
             },
             {
               "type": "BLANK"
@@ -1610,20 +1616,11 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "modifier"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "modifier"
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "modifier"
+              }
             },
             {
               "type": "BLANK"

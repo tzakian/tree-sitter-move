@@ -243,13 +243,13 @@ module.exports = grammar({
             ';'
         ),
         macro_function_definition: $ => seq(
-            optional($.modifier),
+            optional(repeat($.modifier)),
             'macro',
             $._macro_signature,
             field('body', $.block)
         ),
         _macro_signature: $ => seq(
-            optional($.modifier),
+            optional(repeat($.modifier)),
             'fun',
             field('name', $._function_identifier),
             optional(field('type_parameters', $.type_parameters)),
@@ -261,8 +261,7 @@ module.exports = grammar({
             field('body', $.block)
         ),
         _function_signature: $ => seq(
-            optional($.modifier),
-            optional($.modifier),
+            optional(repeat($.modifier)),
             'fun',
             field('name', $._function_identifier),
             optional(field('type_parameters', $.type_parameters)),
