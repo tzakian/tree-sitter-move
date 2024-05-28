@@ -6168,18 +6168,18 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "vector"
+          "type": "SYMBOL",
+          "name": "identifier"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "FIELD",
-              "name": "type_parameters",
+              "name": "type_arguments",
               "content": {
                 "type": "SYMBOL",
-                "name": "type_parameters"
+                "name": "type_arguments"
               }
             },
             {
@@ -6200,8 +6200,17 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "_literal_value"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_literal_value"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    ]
                   },
                   {
                     "type": "STRING",
@@ -6214,8 +6223,17 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "_literal_value"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_literal_value"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_expression"
+                    }
+                  ]
                 },
                 {
                   "type": "BLANK"
@@ -6416,6 +6434,17 @@
     }
   ],
   "conflicts": [
+    [
+      "_expression_term"
+    ],
+    [
+      "vector_literal",
+      "module_access"
+    ],
+    [
+      "_expression_term",
+      "vector_literal"
+    ],
     [
       "_expression",
       "_expression_term"
