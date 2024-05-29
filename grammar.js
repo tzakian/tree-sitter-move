@@ -33,12 +33,12 @@ module.exports = grammar({
     word: $ => $.identifier,
     supertypes: $ => [$._spec_block_target],
     conflicts: $ => [
-        // [$._struct_identifier, $._enum_identifier, $._variant_identifier, $._variable_identifier, $._function_identifier],
+        [$._expression_term],
+        [$.vector_literal, $.module_access],
+        [$._expression_term, $.vector_literal],
+        [$._expression, $._expression_term],
         [$.function_type_parameters],
         [$.name_expression, $.call_expression, $.pack_expression],
-        // [$.module_access, $.friend_access, $._field_identifier],
-        // [$.return_expression, $.block_identifier],
-        // [$.break_expression, $.block_identifier],
         [$.module_access, $._variable_identifier],
         [$.modifier, $.native_struct_definition],
         [$._expression, $._binary_operand],
@@ -49,7 +49,7 @@ module.exports = grammar({
 
         // parse use declarations
         use_declaration: $ => seq(
-            optional('public'),
+            optional(field('struct_visibility', 'public')),
             'use', choice($.use_fun, $.use_module, $.use_module_member, $.use_module_members), ';'),
         use_fun: $ => seq(
             'fun',
@@ -243,13 +243,13 @@ module.exports = grammar({
             ';'
         ),
         macro_function_definition: $ => seq(
-            optional($.modifier),
+            optional(repeat($.modifier)),
             'macro',
             $._macro_signature,
             field('body', $.block)
         ),
         _macro_signature: $ => seq(
-            optional($.modifier),
+            optional(repeat($.modifier)),
             'fun',
             field('name', $._function_identifier),
             optional(field('type_parameters', $.type_parameters)),
@@ -261,8 +261,7 @@ module.exports = grammar({
             field('body', $.block)
         ),
         _function_signature: $ => seq(
-            optional($.modifier),
-            optional($.modifier),
+            optional(repeat($.modifier)),
             'fun',
             field('name', $._function_identifier),
             optional(field('type_parameters', $.type_parameters)),
@@ -753,6 +752,7 @@ module.exports = grammar({
             $.annotate_expression,
             $.block,
             $.spec_block,
+            $.if_expression,
 
             $.dot_expression,
             $.index_expression,
@@ -892,7 +892,13 @@ module.exports = grammar({
         num_literal: $ => choice(/[0-9][0-9_]*(?:u8|u16|u32|u64|u128|u256)?/, /0x[a-fA-F0-9_]+/),
         hex_string_literal: $ => /x"[0-9a-fA-F]*"/,
         byte_string_literal: $ => /b"(\\.|[^\\"])*"/,
-        vector_literal: $ => seq("vector[", sepBy(",", $._literal_value), "]"),
+        /**
+         * Houston, we have a problem here. The `vector_literal` disallows type arguments, which is not correct.
+         * And if we allow type arguments here, we will have conflict with vector type and `call_expression`.
+         *
+         * let vector: vector<u8> = *vector::borrow(vector<vector<u8>>[ vector<u8>[1] ], 0);
+         */
+        vector_literal: $ => seq($.identifier, optional(field('type_arguments', $.type_arguments)), "[", sepBy(",", choice($._literal_value, $._expression)), "]"),
         _module_identifier: $ => alias($.identifier, $.module_identifier),
         _struct_identifier: $ => alias($.identifier, $.struct_identifier),
         _enum_identifier: $ => alias($.identifier, $.enum_identifier),

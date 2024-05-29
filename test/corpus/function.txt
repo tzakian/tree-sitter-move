@@ -1,0 +1,123 @@
+====
+Functions
+====
+
+module book::book {
+
+    // block vs semicolon
+    fun nothing();
+    fun nothing() {}
+
+    // type parameters
+    fun nothing<a>() {}
+    fun nothing<b: key>() {}
+    fun nothing<c: key + store>() {}
+    fun nothing<a, b>() {}
+    fun nothing<a: key, b>() {}
+    fun nothing<a: key, b: store>() {}
+
+    // modifiers
+    native fun nothing();
+    public native fun nothing();
+    entry public(package) native fun nothing();
+    public macro fun macro_fun() {}
+
+    
+}
+
+---
+
+(source_file
+  (module_definition
+    (module_identity
+      (module_identifier)
+      (module_identifier))
+    (module_body
+      (empty_line)
+      (line_comment)
+      (native_function_definition
+        (function_identifier)
+        (function_parameters))
+      (function_definition
+        (function_identifier)
+        (function_parameters)
+        (block))
+      (empty_line)
+      (line_comment)
+      (function_definition
+        (function_identifier)
+        (type_parameters
+          (type_parameter
+            (type_parameter_identifier)))
+        (function_parameters)
+        (block))
+      (function_definition
+        (function_identifier)
+        (type_parameters
+          (type_parameter
+            (type_parameter_identifier)
+            (ability)))
+        (function_parameters)
+        (block))
+      (function_definition
+        (function_identifier)
+        (type_parameters
+          (type_parameter
+            (type_parameter_identifier)
+            (ability)
+            (ability)))
+        (function_parameters)
+        (block))
+      (function_definition
+        (function_identifier)
+        (type_parameters
+          (type_parameter
+            (type_parameter_identifier))
+          (type_parameter
+            (type_parameter_identifier)))
+        (function_parameters)
+        (block))
+      (function_definition
+        (function_identifier)
+        (type_parameters
+          (type_parameter
+            (type_parameter_identifier)
+            (ability))
+          (type_parameter
+            (type_parameter_identifier)))
+        (function_parameters)
+        (block))
+      (function_definition
+        (function_identifier)
+        (type_parameters
+          (type_parameter
+            (type_parameter_identifier)
+            (ability))
+          (type_parameter
+            (type_parameter_identifier)
+            (ability)))
+        (function_parameters)
+        (block))
+      (empty_line)
+      (line_comment)
+      (native_function_definition
+        (modifier)
+        (function_identifier)
+        (function_parameters))
+      (native_function_definition
+        (modifier)
+        (modifier)
+        (function_identifier)
+        (function_parameters))
+      (native_function_definition
+        (modifier)
+        (modifier)
+        (modifier)
+        (function_identifier)
+        (function_parameters))
+      (macro_function_definition
+        (modifier)
+        (function_identifier)
+        (function_parameters)
+        (block))
+      (empty_line))))

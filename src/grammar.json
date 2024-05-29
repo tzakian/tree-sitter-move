@@ -16,8 +16,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "public"
+              "type": "FIELD",
+              "name": "struct_visibility",
+              "content": {
+                "type": "STRING",
+                "value": "public"
+              }
             },
             {
               "type": "BLANK"
@@ -1487,8 +1491,11 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "modifier"
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "modifier"
+              }
             },
             {
               "type": "BLANK"
@@ -1520,8 +1527,11 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "modifier"
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "modifier"
+              }
             },
             {
               "type": "BLANK"
@@ -1606,20 +1616,11 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "modifier"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "modifier"
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "modifier"
+              }
             },
             {
               "type": "BLANK"
@@ -5229,6 +5230,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "if_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "dot_expression"
         },
         {
@@ -6160,8 +6165,28 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "type_arguments",
+              "content": {
+                "type": "SYMBOL",
+                "name": "type_arguments"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
-          "value": "vector["
+          "value": "["
         },
         {
           "type": "SEQ",
@@ -6172,8 +6197,17 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "_literal_value"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_literal_value"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    ]
                   },
                   {
                     "type": "STRING",
@@ -6186,8 +6220,17 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "_literal_value"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_literal_value"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_expression"
+                    }
+                  ]
                 },
                 {
                   "type": "BLANK"
@@ -6388,6 +6431,21 @@
     }
   ],
   "conflicts": [
+    [
+      "_expression_term"
+    ],
+    [
+      "vector_literal",
+      "module_access"
+    ],
+    [
+      "_expression_term",
+      "vector_literal"
+    ],
+    [
+      "_expression",
+      "_expression_term"
+    ],
     [
       "function_type_parameters"
     ],
