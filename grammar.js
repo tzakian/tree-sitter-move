@@ -94,7 +94,7 @@ module.exports = grammar({
     },
     module_body: $ => {
       return seq(
-        '{',
+        choice(';', '{'),
         repeat(
           choice(
             $.use_declaration,
@@ -105,7 +105,7 @@ module.exports = grammar({
             $._enum_item,
             $.spec_block,
           )),
-        '}'
+        optional('}'),
       );
     },
 
