@@ -455,6 +455,8 @@ module.exports = grammar({
     module_access: $ => choice(
       // macro variable access
       seq('$', field('member', $.identifier)),
+      // address access
+      seq('@', field('member', $.identifier)),
       field('member', alias($._reserved_identifier, $.identifier)),
       field('member', $.identifier),
       seq(
@@ -835,7 +837,7 @@ module.exports = grammar({
       field('expr',
         $._expression_term,
       ),
-      '[', field('idx', $._expression), ']'
+      '[', sepBy(',', field('idx', $._expression)), ']'
     )),
 
     // Expression end
@@ -897,6 +899,7 @@ module.exports = grammar({
       $.byte_string_literal,
       // $.vector_literal,
     ),
+
     block_identifier: $ => seq($.label, ':'),
     label: $ => seq('\'', $.identifier),
     address_literal: $ => /@0x[a-fA-F0-9]+/,

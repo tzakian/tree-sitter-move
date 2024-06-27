@@ -4018,8 +4018,8 @@
         ]
       },
       "idx": {
-        "multiple": false,
-        "required": true,
+        "multiple": true,
+        "required": false,
         "types": [
           {
             "type": "abort_expression",
