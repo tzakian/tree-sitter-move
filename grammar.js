@@ -770,6 +770,8 @@ module.exports = grammar({
 
       $.dot_expression,
       $.index_expression,
+      $.vector_expression,
+      $.match_expression,
     ),
     break_expression: $ => seq(
       'break',

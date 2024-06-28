@@ -708,6 +708,10 @@
             "named": true
           },
           {
+            "type": "match_expression",
+            "named": true
+          },
+          {
             "type": "move_or_copy_expression",
             "named": true
           },
@@ -733,6 +737,10 @@
           },
           {
             "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
             "named": true
           }
         ]
@@ -966,6 +974,10 @@
             "named": true
           },
           {
+            "type": "match_expression",
+            "named": true
+          },
+          {
             "type": "move_or_copy_expression",
             "named": true
           },
@@ -991,6 +1003,10 @@
           },
           {
             "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
             "named": true
           }
         ]
@@ -1082,6 +1098,10 @@
             "named": true
           },
           {
+            "type": "match_expression",
+            "named": true
+          },
+          {
             "type": "move_or_copy_expression",
             "named": true
           },
@@ -1107,6 +1127,10 @@
           },
           {
             "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
             "named": true
           }
         ]
@@ -1829,6 +1853,10 @@
             "named": true
           },
           {
+            "type": "match_expression",
+            "named": true
+          },
+          {
             "type": "name_expression",
             "named": true
           },
@@ -1846,6 +1874,10 @@
           },
           {
             "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
             "named": true
           }
         ]
@@ -2536,6 +2568,10 @@
             "named": true
           },
           {
+            "type": "match_expression",
+            "named": true
+          },
+          {
             "type": "name_expression",
             "named": true
           },
@@ -2553,6 +2589,10 @@
           },
           {
             "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
             "named": true
           }
         ]
@@ -2618,6 +2658,10 @@
             "named": true
           },
           {
+            "type": "match_expression",
+            "named": true
+          },
+          {
             "type": "name_expression",
             "named": true
           },
@@ -2635,6 +2679,10 @@
           },
           {
             "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
             "named": true
           }
         ]
@@ -3996,6 +4044,10 @@
             "named": true
           },
           {
+            "type": "match_expression",
+            "named": true
+          },
+          {
             "type": "name_expression",
             "named": true
           },
@@ -4013,6 +4065,10 @@
           },
           {
             "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
             "named": true
           }
         ]
