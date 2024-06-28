@@ -6466,16 +6466,11 @@
         ]
       }
     },
-    "empty_line": {
+    "newline": {
       "type": "TOKEN",
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[\\n\\r][\\n\\r]"
-          }
-        ]
+        "type": "PATTERN",
+        "value": "\\n"
       }
     },
     "_whitespace": {
@@ -6518,7 +6513,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "empty_line"
+      "name": "newline"
     },
     {
       "type": "SYMBOL",

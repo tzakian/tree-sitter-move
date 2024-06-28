@@ -8924,10 +8924,6 @@
     "named": false
   },
   {
-    "type": "empty_line",
-    "named": true
-  },
-  {
     "type": "ensures",
     "named": false
   },
@@ -9046,6 +9042,10 @@
   {
     "type": "native",
     "named": false
+  },
+  {
+    "type": "newline",
+    "named": true
   },
   {
     "type": "phantom",
