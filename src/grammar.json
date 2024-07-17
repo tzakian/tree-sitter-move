@@ -732,6 +732,10 @@
                     },
                     {
                       "type": "SYMBOL",
+                      "name": "annotation_item"
+                    },
+                    {
+                      "type": "SYMBOL",
                       "name": "module_access"
                     }
                   ]
@@ -751,6 +755,10 @@
                           {
                             "type": "SYMBOL",
                             "name": "_literal_value"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "annotation_item"
                           },
                           {
                             "type": "SYMBOL",
@@ -6521,6 +6529,13 @@
     }
   ],
   "conflicts": [
+    [
+      "annotation_item"
+    ],
+    [
+      "annotation_item",
+      "module_access"
+    ],
     [
       "_expression",
       "_expression_term"

@@ -432,6 +432,10 @@
           "named": true
         },
         {
+          "type": "annotation_item",
+          "named": true
+        },
+        {
           "type": "bool_literal",
           "named": true
         },

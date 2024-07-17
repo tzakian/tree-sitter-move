@@ -33,6 +33,8 @@ module.exports = grammar({
   word: $ => $.identifier,
   supertypes: $ => [$._spec_block_target],
   conflicts: $ => [
+    [$.annotation_item],
+    [$.annotation_item, $.module_access],
     [$._expression, $._expression_term],
     [$.function_type_parameters],
     [$.name_expression, $.call_expression, $.pack_expression],
@@ -126,7 +128,7 @@ module.exports = grammar({
       seq(
         field("name", $.identifier),
         "(",
-        sepBy1(",", choice($._literal_value, $.module_access)),
+        sepBy1(",", choice($._literal_value, $.annotation_item, $.module_access)),
         ")"
       ),
       seq(
