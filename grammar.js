@@ -33,6 +33,7 @@ module.exports = grammar({
   word: $ => $.identifier,
   supertypes: $ => [$._spec_block_target],
   conflicts: $ => [
+    [$.annotation_expr, $.module_access],
     [$._expression, $._expression_term],
     [$.function_type_parameters],
     [$.name_expression, $.call_expression, $.pack_expression],
@@ -116,25 +117,23 @@ module.exports = grammar({
       "]"
     ),
 
-    annotation_item: $ => choice(
+    annotation_expr: $ => choice(
       field("name", $.identifier),
       seq(
-        field("name", $.identifier),
-        "=",
-        field("value", $._literal_value)
+        field("name", $.identifier), "=", field("value", choice(field("local_const", seq('::', $.module_access)), $.module_access, $._literal_value))
       ),
-      seq(
-        field("name", $.identifier),
-        "(",
-        sepBy1(",", choice($._literal_value, $.module_access)),
-        ")"
-      ),
-      seq(
-        field("name", $.identifier),
-        "(",
-        sepBy1(",", seq($.identifier, '=', choice($.module_access, $._literal_value))),
-        ")"
-      ),
+    ),
+
+    annotation_list: $ => seq(
+      field("name", $.identifier),
+      "(",
+      sepBy1(",", choice($._literal_value, $.annotation_item, $.module_access, field("local_const", seq('::', $.module_access)))),
+      ")"
+    ),
+
+    annotation_item: $ => choice(
+      field("annotation_expr", $.annotation_expr),
+      field("annotation_list", $.annotation_list),
     ),
 
     // Constants
@@ -763,7 +762,7 @@ module.exports = grammar({
       $._literal_value,
       $.unit_expression,
       $.expression_list,
-      $.annotate_expression,
+      $.annotation_expression,
       $.block,
       $.spec_block,
       $.if_expression,
@@ -821,7 +820,7 @@ module.exports = grammar({
       'as',
       field('ty', $._type),
     )),
-    annotate_expression: $ => seq(
+    annotation_expression: $ => seq(
       '(',
       field('expr', $._expression),
       ':',
