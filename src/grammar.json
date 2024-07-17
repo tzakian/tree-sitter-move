@@ -669,7 +669,7 @@
         }
       ]
     },
-    "annotation_item": {
+    "annotation_expr": {
       "type": "CHOICE",
       "members": [
         {
@@ -699,197 +699,176 @@
               "type": "FIELD",
               "name": "value",
               "content": {
-                "type": "SYMBOL",
-                "name": "_literal_value"
-              }
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "name",
-              "content": {
-                "type": "SYMBOL",
-                "name": "identifier"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_literal_value"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "annotation_item"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "module_access"
-                    }
-                  ]
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": ","
-                      },
-                      {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "_literal_value"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "annotation_item"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "module_access"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": ","
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "name",
-              "content": {
-                "type": "SYMBOL",
-                "name": "identifier"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "identifier"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "="
-                    },
-                    {
-                      "type": "CHOICE",
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "local_const",
+                    "content": {
+                      "type": "SEQ",
                       "members": [
                         {
-                          "type": "SYMBOL",
-                          "name": "module_access"
+                          "type": "STRING",
+                          "value": "::"
                         },
                         {
                           "type": "SYMBOL",
-                          "name": "_literal_value"
+                          "name": "module_access"
                         }
                       ]
                     }
-                  ]
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "module_access"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_literal_value"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "annotation_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_literal_value"
                 },
                 {
-                  "type": "REPEAT",
+                  "type": "SYMBOL",
+                  "name": "annotation_item"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "module_access"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "local_const",
                   "content": {
                     "type": "SEQ",
                     "members": [
                       {
                         "type": "STRING",
-                        "value": ","
+                        "value": "::"
                       },
                       {
-                        "type": "SEQ",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "identifier"
-                          },
-                          {
-                            "type": "STRING",
-                            "value": "="
-                          },
-                          {
-                            "type": "CHOICE",
-                            "members": [
-                              {
-                                "type": "SYMBOL",
-                                "name": "module_access"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "_literal_value"
-                              }
-                            ]
-                          }
-                        ]
+                        "type": "SYMBOL",
+                        "name": "module_access"
                       }
                     ]
                   }
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": ","
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
                 }
               ]
             },
             {
-              "type": "STRING",
-              "value": ")"
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_literal_value"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "annotation_item"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "module_access"
+                      },
+                      {
+                        "type": "FIELD",
+                        "name": "local_const",
+                        "content": {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "STRING",
+                              "value": "::"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "module_access"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ","
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "annotation_item": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "annotation_expr",
+          "content": {
+            "type": "SYMBOL",
+            "name": "annotation_expr"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "annotation_list",
+          "content": {
+            "type": "SYMBOL",
+            "name": "annotation_list"
+          }
         }
       ]
     },
@@ -5368,7 +5347,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "annotate_expression"
+          "name": "annotation_expression"
         },
         {
           "type": "SYMBOL",
@@ -5790,7 +5769,7 @@
         ]
       }
     },
-    "annotate_expression": {
+    "annotation_expression": {
       "type": "SEQ",
       "members": [
         {
@@ -6530,10 +6509,7 @@
   ],
   "conflicts": [
     [
-      "annotation_item"
-    ],
-    [
-      "annotation_item",
+      "annotation_expr",
       "module_access"
     ],
     [
