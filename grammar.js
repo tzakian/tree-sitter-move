@@ -468,6 +468,7 @@ module.exports = grammar({
         '::',
         field('member', $.identifier)
       ),
+      seq($.module_identity, '::', field('enum_name', $.identifier), '::', field('variant', $.identifier)),
     ),
 
     friend_access: $ => choice(
@@ -551,6 +552,8 @@ module.exports = grammar({
     // Expression
 
     _expression: $ => choice(
+      $.call_expression,
+      $.macro_call_expression,
       $.lambda_expression,
       $.if_expression,
       $.while_expression,
