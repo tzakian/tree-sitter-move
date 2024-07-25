@@ -6255,8 +6255,13 @@
               "type": "FIELD",
               "name": "field",
               "content": {
-                "type": "SYMBOL",
-                "name": "_field_identifier"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_expression"
+                  }
+                ]
               }
             },
             {

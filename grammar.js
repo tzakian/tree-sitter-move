@@ -888,7 +888,7 @@ module.exports = grammar({
     // not sure if it should be here
     bind_field: $ => choice(seq(
       optional('mut'),
-      field('field', $._field_identifier), // direct bind
+      field('field', choice($._expression)), // direct bind
       optional(seq(
         ':',
         field('bind', $._bind)
