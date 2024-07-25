@@ -5341,7 +5341,7 @@
             "name": "expr",
             "content": {
               "type": "SYMBOL",
-              "name": "_variable_identifier"
+              "name": "_expression"
             }
           }
         ]

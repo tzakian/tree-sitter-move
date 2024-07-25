@@ -752,7 +752,7 @@ module.exports = grammar({
     // move or copy
     move_or_copy_expression: $ => prec(PRECEDENCE.unary, seq(
       choice('move', 'copy'),
-      field('expr', $._variable_identifier),
+      field('expr', $._expression),
     )),
 
     _expression_term: $ => choice(
