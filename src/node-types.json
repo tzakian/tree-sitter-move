@@ -5809,7 +5809,21 @@
   {
     "type": "num_literal",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "typed_num_literal",
+          "named": true
+        },
+        {
+          "type": "untyped_num_literal",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "pack_expression",
@@ -9222,6 +9236,10 @@
     "named": true
   },
   {
+    "type": "typed_num_literal",
+    "named": true
+  },
+  {
     "type": "u128",
     "named": false
   },
@@ -9244,6 +9262,10 @@
   {
     "type": "u8",
     "named": false
+  },
+  {
+    "type": "untyped_num_literal",
+    "named": true
   },
   {
     "type": "use",
