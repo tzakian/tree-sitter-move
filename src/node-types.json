@@ -50,6 +50,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -99,10 +103,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -162,6 +162,14 @@
             "named": true
           },
           {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
             "type": "return_expression",
             "named": true
           },
@@ -183,6 +191,120 @@
           },
           {
             "type": "while_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "access_field",
+    "named": true,
+    "fields": {
+      "field": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "object": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "access_field",
+            "named": true
+          },
+          {
+            "type": "address_literal",
+            "named": true
+          },
+          {
+            "type": "annotation_expression",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "bool_literal",
+            "named": true
+          },
+          {
+            "type": "break_expression",
+            "named": true
+          },
+          {
+            "type": "byte_string_literal",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "continue_expression",
+            "named": true
+          },
+          {
+            "type": "expression_list",
+            "named": true
+          },
+          {
+            "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "macro_call_expression",
+            "named": true
+          },
+          {
+            "type": "match_expression",
+            "named": true
+          },
+          {
+            "type": "name_expression",
+            "named": true
+          },
+          {
+            "type": "num_literal",
+            "named": true
+          },
+          {
+            "type": "pack_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
+            "type": "spec_block",
+            "named": true
+          },
+          {
+            "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
             "named": true
           }
         ]
@@ -277,6 +399,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -326,10 +452,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -386,6 +508,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -571,6 +701,10 @@
           "named": true
         },
         {
+          "type": "access_field",
+          "named": true
+        },
+        {
           "type": "address_literal",
           "named": true
         },
@@ -620,10 +754,6 @@
         },
         {
           "type": "dereference_expression",
-          "named": true
-        },
-        {
-          "type": "dot_expression",
           "named": true
         },
         {
@@ -683,6 +813,14 @@
           "named": true
         },
         {
+          "type": "receiver_call",
+          "named": true
+        },
+        {
+          "type": "receiver_macro_call",
+          "named": true
+        },
+        {
           "type": "return_expression",
           "named": true
         },
@@ -717,6 +855,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "access_field",
+            "named": true
+          },
           {
             "type": "address_literal",
             "named": true
@@ -755,10 +897,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -802,6 +940,14 @@
             "named": true
           },
           {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
             "type": "spec_block",
             "named": true
           },
@@ -825,6 +971,10 @@
         "types": [
           {
             "type": "abort_expression",
+            "named": true
+          },
+          {
+            "type": "access_field",
             "named": true
           },
           {
@@ -877,10 +1027,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -940,6 +1086,14 @@
             "named": true
           },
           {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
             "type": "return_expression",
             "named": true
           },
@@ -976,6 +1130,10 @@
         "required": true,
         "types": [
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -1024,10 +1182,6 @@
             "named": true
           },
           {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
             "type": "expression_list",
             "named": true
           },
@@ -1065,6 +1219,14 @@
           },
           {
             "type": "pack_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -1100,6 +1262,10 @@
         "required": true,
         "types": [
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -1148,10 +1314,6 @@
             "named": true
           },
           {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
             "type": "expression_list",
             "named": true
           },
@@ -1189,6 +1351,14 @@
           },
           {
             "type": "pack_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -1389,6 +1559,10 @@
           "named": true
         },
         {
+          "type": "access_field",
+          "named": true
+        },
+        {
           "type": "address_literal",
           "named": true
         },
@@ -1445,10 +1619,6 @@
           "named": true
         },
         {
-          "type": "dot_expression",
-          "named": true
-        },
-        {
           "type": "expression_list",
           "named": true
         },
@@ -1502,6 +1672,14 @@
         },
         {
           "type": "quantifier_expression",
+          "named": true
+        },
+        {
+          "type": "receiver_call",
+          "named": true
+        },
+        {
+          "type": "receiver_macro_call",
           "named": true
         },
         {
@@ -1563,6 +1741,10 @@
           "named": true
         },
         {
+          "type": "access_field",
+          "named": true
+        },
+        {
           "type": "address_literal",
           "named": true
         },
@@ -1612,10 +1794,6 @@
         },
         {
           "type": "dereference_expression",
-          "named": true
-        },
-        {
-          "type": "dot_expression",
           "named": true
         },
         {
@@ -1679,6 +1857,14 @@
           "named": true
         },
         {
+          "type": "receiver_call",
+          "named": true
+        },
+        {
+          "type": "receiver_macro_call",
+          "named": true
+        },
+        {
           "type": "return_expression",
           "named": true
         },
@@ -1720,6 +1906,10 @@
         "types": [
           {
             "type": "abort_expression",
+            "named": true
+          },
+          {
+            "type": "access_field",
             "named": true
           },
           {
@@ -1772,10 +1962,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -1832,6 +2018,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -1903,10 +2097,6 @@
             "named": true
           },
           {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
             "type": "expression_list",
             "named": true
           },
@@ -1916,10 +2106,6 @@
           },
           {
             "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
             "named": true
           },
           {
@@ -2017,6 +2203,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -2066,10 +2256,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -2126,6 +2312,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -2215,6 +2409,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -2264,10 +2462,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -2324,6 +2518,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -2438,6 +2640,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -2487,10 +2693,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -2550,6 +2752,14 @@
             "named": true
           },
           {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
             "type": "return_expression",
             "named": true
           },
@@ -2571,192 +2781,6 @@
           },
           {
             "type": "while_expression",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "dot_expression",
-    "named": true,
-    "fields": {
-      "access": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "address_literal",
-            "named": true
-          },
-          {
-            "type": "annotation_expression",
-            "named": true
-          },
-          {
-            "type": "block",
-            "named": true
-          },
-          {
-            "type": "bool_literal",
-            "named": true
-          },
-          {
-            "type": "break_expression",
-            "named": true
-          },
-          {
-            "type": "byte_string_literal",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "continue_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "expression_list",
-            "named": true
-          },
-          {
-            "type": "hex_string_literal",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "macro_call_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "name_expression",
-            "named": true
-          },
-          {
-            "type": "num_literal",
-            "named": true
-          },
-          {
-            "type": "pack_expression",
-            "named": true
-          },
-          {
-            "type": "spec_block",
-            "named": true
-          },
-          {
-            "type": "unit_expression",
-            "named": true
-          },
-          {
-            "type": "vector_expression",
-            "named": true
-          }
-        ]
-      },
-      "expr": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "address_literal",
-            "named": true
-          },
-          {
-            "type": "annotation_expression",
-            "named": true
-          },
-          {
-            "type": "block",
-            "named": true
-          },
-          {
-            "type": "bool_literal",
-            "named": true
-          },
-          {
-            "type": "break_expression",
-            "named": true
-          },
-          {
-            "type": "byte_string_literal",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "continue_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
-            "named": true
-          },
-          {
-            "type": "expression_list",
-            "named": true
-          },
-          {
-            "type": "hex_string_literal",
-            "named": true
-          },
-          {
-            "type": "if_expression",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "macro_call_expression",
-            "named": true
-          },
-          {
-            "type": "match_expression",
-            "named": true
-          },
-          {
-            "type": "name_expression",
-            "named": true
-          },
-          {
-            "type": "num_literal",
-            "named": true
-          },
-          {
-            "type": "pack_expression",
-            "named": true
-          },
-          {
-            "type": "spec_block",
-            "named": true
-          },
-          {
-            "type": "unit_expression",
-            "named": true
-          },
-          {
-            "type": "vector_expression",
             "named": true
           }
         ]
@@ -2847,6 +2871,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -2896,10 +2924,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -2959,6 +2983,14 @@
             "named": true
           },
           {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
             "type": "return_expression",
             "named": true
           },
@@ -3006,6 +3038,10 @@
       "types": [
         {
           "type": "abort_expression",
+          "named": true
+        },
+        {
+          "type": "access_field",
           "named": true
         },
         {
@@ -3058,10 +3094,6 @@
         },
         {
           "type": "dereference_expression",
-          "named": true
-        },
-        {
-          "type": "dot_expression",
           "named": true
         },
         {
@@ -3118,6 +3150,14 @@
         },
         {
           "type": "quantifier_expression",
+          "named": true
+        },
+        {
+          "type": "receiver_call",
+          "named": true
+        },
+        {
+          "type": "receiver_macro_call",
           "named": true
         },
         {
@@ -3466,6 +3506,10 @@
           "named": true
         },
         {
+          "type": "access_field",
+          "named": true
+        },
+        {
           "type": "address_literal",
           "named": true
         },
@@ -3515,10 +3559,6 @@
         },
         {
           "type": "dereference_expression",
-          "named": true
-        },
-        {
-          "type": "dot_expression",
           "named": true
         },
         {
@@ -3578,6 +3618,14 @@
           "named": true
         },
         {
+          "type": "receiver_call",
+          "named": true
+        },
+        {
+          "type": "receiver_macro_call",
+          "named": true
+        },
+        {
           "type": "return_expression",
           "named": true
         },
@@ -3622,6 +3670,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -3671,10 +3723,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -3731,6 +3779,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -3768,6 +3824,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -3817,10 +3877,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -3877,6 +3933,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -3914,6 +3978,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -3963,10 +4031,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -4023,6 +4087,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -4062,6 +4134,10 @@
         "required": true,
         "types": [
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -4091,10 +4167,6 @@
           },
           {
             "type": "continue_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -4134,6 +4206,14 @@
             "named": true
           },
           {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
             "type": "spec_block",
             "named": true
           },
@@ -4153,6 +4233,10 @@
         "types": [
           {
             "type": "abort_expression",
+            "named": true
+          },
+          {
+            "type": "access_field",
             "named": true
           },
           {
@@ -4205,10 +4289,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -4265,6 +4345,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -4356,6 +4444,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -4405,10 +4497,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -4465,6 +4553,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -4544,6 +4640,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -4593,10 +4693,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -4653,6 +4749,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -4722,6 +4826,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -4771,10 +4879,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -4831,6 +4935,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -4992,6 +5104,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -5041,10 +5157,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -5104,6 +5216,14 @@
             "named": true
           },
           {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
             "type": "return_expression",
             "named": true
           },
@@ -5136,6 +5256,10 @@
       "types": [
         {
           "type": "abort_expression",
+          "named": true
+        },
+        {
+          "type": "access_field",
           "named": true
         },
         {
@@ -5195,10 +5319,6 @@
           "named": true
         },
         {
-          "type": "dot_expression",
-          "named": true
-        },
-        {
           "type": "expression_list",
           "named": true
         },
@@ -5255,6 +5375,14 @@
           "named": true
         },
         {
+          "type": "receiver_call",
+          "named": true
+        },
+        {
+          "type": "receiver_macro_call",
+          "named": true
+        },
+        {
           "type": "return_expression",
           "named": true
         },
@@ -5291,6 +5419,10 @@
         "types": [
           {
             "type": "abort_expression",
+            "named": true
+          },
+          {
+            "type": "access_field",
             "named": true
           },
           {
@@ -5343,10 +5475,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -5403,6 +5531,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -5925,6 +6061,10 @@
           "named": true
         },
         {
+          "type": "access_field",
+          "named": true
+        },
+        {
           "type": "address_literal",
           "named": true
         },
@@ -5978,10 +6118,6 @@
         },
         {
           "type": "dereference_expression",
-          "named": true
-        },
-        {
-          "type": "dot_expression",
           "named": true
         },
         {
@@ -6053,6 +6189,14 @@
           "named": true
         },
         {
+          "type": "receiver_call",
+          "named": true
+        },
+        {
+          "type": "receiver_macro_call",
+          "named": true
+        },
+        {
           "type": "ref_type",
           "named": true
         },
@@ -6115,6 +6259,10 @@
           "named": true
         },
         {
+          "type": "access_field",
+          "named": true
+        },
+        {
           "type": "address_literal",
           "named": true
         },
@@ -6164,10 +6312,6 @@
         },
         {
           "type": "dereference_expression",
-          "named": true
-        },
-        {
-          "type": "dot_expression",
           "named": true
         },
         {
@@ -6231,6 +6375,14 @@
           "named": true
         },
         {
+          "type": "receiver_call",
+          "named": true
+        },
+        {
+          "type": "receiver_macro_call",
+          "named": true
+        },
+        {
           "type": "return_expression",
           "named": true
         },
@@ -6255,6 +6407,282 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "receiver_call",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arg_list",
+            "named": true
+          }
+        ]
+      },
+      "func": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "receiver": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "access_field",
+            "named": true
+          },
+          {
+            "type": "address_literal",
+            "named": true
+          },
+          {
+            "type": "annotation_expression",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "bool_literal",
+            "named": true
+          },
+          {
+            "type": "break_expression",
+            "named": true
+          },
+          {
+            "type": "byte_string_literal",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "continue_expression",
+            "named": true
+          },
+          {
+            "type": "expression_list",
+            "named": true
+          },
+          {
+            "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "macro_call_expression",
+            "named": true
+          },
+          {
+            "type": "match_expression",
+            "named": true
+          },
+          {
+            "type": "name_expression",
+            "named": true
+          },
+          {
+            "type": "num_literal",
+            "named": true
+          },
+          {
+            "type": "pack_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
+            "type": "spec_block",
+            "named": true
+          },
+          {
+            "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
+            "named": true
+          }
+        ]
+      },
+      "type_generics": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "::",
+            "named": false
+          },
+          {
+            "type": "type_arguments",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "receiver_macro_call",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arg_list",
+            "named": true
+          }
+        ]
+      },
+      "func": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "receiver": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "access_field",
+            "named": true
+          },
+          {
+            "type": "address_literal",
+            "named": true
+          },
+          {
+            "type": "annotation_expression",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "bool_literal",
+            "named": true
+          },
+          {
+            "type": "break_expression",
+            "named": true
+          },
+          {
+            "type": "byte_string_literal",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "continue_expression",
+            "named": true
+          },
+          {
+            "type": "expression_list",
+            "named": true
+          },
+          {
+            "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "macro_call_expression",
+            "named": true
+          },
+          {
+            "type": "match_expression",
+            "named": true
+          },
+          {
+            "type": "name_expression",
+            "named": true
+          },
+          {
+            "type": "num_literal",
+            "named": true
+          },
+          {
+            "type": "pack_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
+            "type": "spec_block",
+            "named": true
+          },
+          {
+            "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
+            "named": true
+          }
+        ]
+      },
+      "type_generics": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "::",
+            "named": false
+          },
+          {
+            "type": "type_arguments",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -6357,6 +6785,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -6406,10 +6838,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -6466,6 +6894,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -6524,6 +6960,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -6573,10 +7013,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -6633,6 +7069,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -6837,6 +7281,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -6886,10 +7334,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -6946,6 +7390,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -6993,6 +7445,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -7042,10 +7498,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -7102,6 +7554,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -7155,6 +7615,10 @@
           "named": true
         },
         {
+          "type": "access_field",
+          "named": true
+        },
+        {
           "type": "address_literal",
           "named": true
         },
@@ -7204,10 +7668,6 @@
         },
         {
           "type": "dereference_expression",
-          "named": true
-        },
-        {
-          "type": "dot_expression",
           "named": true
         },
         {
@@ -7267,6 +7727,14 @@
           "named": true
         },
         {
+          "type": "receiver_call",
+          "named": true
+        },
+        {
+          "type": "receiver_macro_call",
+          "named": true
+        },
+        {
           "type": "return_expression",
           "named": true
         },
@@ -7313,6 +7781,10 @@
         "types": [
           {
             "type": "abort_expression",
+            "named": true
+          },
+          {
+            "type": "access_field",
             "named": true
           },
           {
@@ -7365,10 +7837,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -7425,6 +7893,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -7488,6 +7964,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -7537,10 +8017,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -7597,6 +8073,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -7904,6 +8388,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -7953,10 +8441,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -8013,6 +8497,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -8403,6 +8895,10 @@
           "named": true
         },
         {
+          "type": "access_field",
+          "named": true
+        },
+        {
           "type": "address_literal",
           "named": true
         },
@@ -8456,10 +8952,6 @@
         },
         {
           "type": "dereference_expression",
-          "named": true
-        },
-        {
-          "type": "dot_expression",
           "named": true
         },
         {
@@ -8527,6 +9019,14 @@
           "named": true
         },
         {
+          "type": "receiver_call",
+          "named": true
+        },
+        {
+          "type": "receiver_macro_call",
+          "named": true
+        },
+        {
           "type": "ref_type",
           "named": true
         },
@@ -8574,6 +9074,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -8623,10 +9127,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -8683,6 +9183,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -8720,6 +9228,10 @@
             "named": true
           },
           {
+            "type": "access_field",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
@@ -8769,10 +9281,6 @@
           },
           {
             "type": "dereference_expression",
-            "named": true
-          },
-          {
-            "type": "dot_expression",
             "named": true
           },
           {
@@ -8829,6 +9337,14 @@
           },
           {
             "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
             "named": true
           },
           {
@@ -9150,10 +9666,6 @@
   {
     "type": "native",
     "named": false
-  },
-  {
-    "type": "newline",
-    "named": true
   },
   {
     "type": "phantom",

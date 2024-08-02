@@ -29,7 +29,10 @@ const PRECEDENCE = {
 
 module.exports = grammar({
   name: 'move',
-  extras: $ => [$._whitespace, $.line_comment, $.block_comment, $.newline, $.annotation],
+  //extras: $ => [$._whitespace, $.line_comment, $.block_comment, $.newline, $.annotation],
+  extras: $ => [$.line_comment, $.block_comment, $.annotation, /\s/],
+
+
   word: $ => $.identifier,
   supertypes: $ => [$._spec_block_target],
   conflicts: $ => [
@@ -40,6 +43,9 @@ module.exports = grammar({
     [$.module_access, $._variable_identifier],
     [$.modifier, $.native_struct_definition],
     [$._expression, $._binary_operand],
+  ],
+  inline: $ => [
+    $._dot_or_index_chain,
   ],
 
   rules: {
@@ -732,6 +738,7 @@ module.exports = grammar({
       $.dereference_expression,
       $.move_or_copy_expression,
       $._expression_term,
+      $._dot_or_index_chain,
     )),
     unary_expression: $ => seq(
       field('op', $.unary_op),
@@ -760,7 +767,7 @@ module.exports = grammar({
       $.continue_expression,
       $.name_expression,
       $.call_expression,
-      $.macro_call_expression,
+      $.macro_call_expression, 
       $.pack_expression,
       $._literal_value,
       $.unit_expression,
@@ -769,9 +776,6 @@ module.exports = grammar({
       $.block,
       $.spec_block,
       $.if_expression,
-
-      $.dot_expression,
-      $.index_expression,
       $.vector_expression,
       $.match_expression,
     ),
@@ -831,17 +835,33 @@ module.exports = grammar({
       ')'
     ),
 
+    _dot_or_index_chain: $ => choice(
+      $.access_field,
+      $.receiver_call,
+      $.receiver_macro_call,
+      $.index_expression,
+      $._expression_term,
+    ),
 
-    dot_expression: $ => prec.left(PRECEDENCE.field, seq(
-      field('expr', $._expression_term),
-      '.',
-      field('access', $._expression_term),
-    )),
     index_expression: $ => prec.left(PRECEDENCE.call, seq(
       field('expr',
-        $._expression_term,
+        $._dot_or_index_chain,
       ),
       '[', sepBy(',', field('idx', $._expression)), ']'
+    )),
+    receiver_call: $ => prec.left(PRECEDENCE.call, seq(
+      field('receiver', $._dot_or_index_chain), '.', field('func', $.identifier),
+      optional(field('type_generics', seq('::', $.type_arguments))),
+      field('arguments', $.arg_list),
+    )),
+    receiver_macro_call: $ => prec.left(PRECEDENCE.call, seq(
+      field('receiver', $._dot_or_index_chain), '.', field('func', $.identifier),
+      optional(field('type_generics', seq('::', $.type_arguments))),
+       "!",
+      field('arguments', $.arg_list),
+    )),
+    access_field: $ => prec.left(PRECEDENCE.field, seq(
+      field('object', $._dot_or_index_chain), '.', field('field', $.identifier),
     )),
 
     // Expression end
@@ -931,8 +951,8 @@ module.exports = grammar({
     line_comment: $ => token(seq(
       '//', /.*/
     )),
-    newline: $ => token(/\n/),
-    _whitespace: $ => /\s/,
+    //newline: $ => token(/\n/),
+    //_whitespace: $ => /\s/,
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
     block_comment: $ => token(seq(
       '/*',
