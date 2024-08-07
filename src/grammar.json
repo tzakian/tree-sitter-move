@@ -6651,6 +6651,17 @@
         ]
       }
     },
+    "newline": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\n"
+      }
+    },
+    "_whitespace": {
+      "type": "PATTERN",
+      "value": "\\s"
+    },
     "block_comment": {
       "type": "TOKEN",
       "content": {
@@ -6675,6 +6686,10 @@
   "extras": [
     {
       "type": "SYMBOL",
+      "name": "_whitespace"
+    },
+    {
+      "type": "SYMBOL",
       "name": "line_comment"
     },
     {
@@ -6683,11 +6698,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "annotation"
+      "name": "newline"
     },
     {
-      "type": "PATTERN",
-      "value": "\\s"
+      "type": "SYMBOL",
+      "name": "annotation"
     }
   ],
   "conflicts": [
