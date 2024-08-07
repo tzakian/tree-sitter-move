@@ -9668,6 +9668,10 @@
     "named": false
   },
   {
+    "type": "newline",
+    "named": true
+  },
+  {
     "type": "phantom",
     "named": false
   },
