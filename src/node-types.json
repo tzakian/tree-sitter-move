@@ -1413,10 +1413,154 @@
       },
       "field": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
-            "type": "field_identifier",
+            "type": "abort_expression",
+            "named": true
+          },
+          {
+            "type": "access_field",
+            "named": true
+          },
+          {
+            "type": "address_literal",
+            "named": true
+          },
+          {
+            "type": "annotation_expression",
+            "named": true
+          },
+          {
+            "type": "assign_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "bool_literal",
+            "named": true
+          },
+          {
+            "type": "borrow_expression",
+            "named": true
+          },
+          {
+            "type": "break_expression",
+            "named": true
+          },
+          {
+            "type": "byte_string_literal",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "continue_expression",
+            "named": true
+          },
+          {
+            "type": "dereference_expression",
+            "named": true
+          },
+          {
+            "type": "expression_list",
+            "named": true
+          },
+          {
+            "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "identified_expression",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "loop_expression",
+            "named": true
+          },
+          {
+            "type": "macro_call_expression",
+            "named": true
+          },
+          {
+            "type": "match_expression",
+            "named": true
+          },
+          {
+            "type": "move_or_copy_expression",
+            "named": true
+          },
+          {
+            "type": "name_expression",
+            "named": true
+          },
+          {
+            "type": "num_literal",
+            "named": true
+          },
+          {
+            "type": "pack_expression",
+            "named": true
+          },
+          {
+            "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
+            "type": "spec_block",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
+            "named": true
+          },
+          {
+            "type": "while_expression",
             "named": true
           }
         ]
@@ -5756,7 +5900,151 @@
         "required": true,
         "types": [
           {
-            "type": "variable_identifier",
+            "type": "abort_expression",
+            "named": true
+          },
+          {
+            "type": "access_field",
+            "named": true
+          },
+          {
+            "type": "address_literal",
+            "named": true
+          },
+          {
+            "type": "annotation_expression",
+            "named": true
+          },
+          {
+            "type": "assign_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "bool_literal",
+            "named": true
+          },
+          {
+            "type": "borrow_expression",
+            "named": true
+          },
+          {
+            "type": "break_expression",
+            "named": true
+          },
+          {
+            "type": "byte_string_literal",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "continue_expression",
+            "named": true
+          },
+          {
+            "type": "dereference_expression",
+            "named": true
+          },
+          {
+            "type": "expression_list",
+            "named": true
+          },
+          {
+            "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "identified_expression",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "loop_expression",
+            "named": true
+          },
+          {
+            "type": "macro_call_expression",
+            "named": true
+          },
+          {
+            "type": "match_expression",
+            "named": true
+          },
+          {
+            "type": "move_or_copy_expression",
+            "named": true
+          },
+          {
+            "type": "name_expression",
+            "named": true
+          },
+          {
+            "type": "num_literal",
+            "named": true
+          },
+          {
+            "type": "pack_expression",
+            "named": true
+          },
+          {
+            "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "receiver_call",
+            "named": true
+          },
+          {
+            "type": "receiver_macro_call",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
+            "type": "spec_block",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "unit_expression",
+            "named": true
+          },
+          {
+            "type": "vector_expression",
+            "named": true
+          },
+          {
+            "type": "while_expression",
             "named": true
           }
         ]
@@ -9425,6 +9713,10 @@
   },
   {
     "type": ".",
+    "named": false
+  },
+  {
+    "type": "..",
     "named": false
   },
   {
