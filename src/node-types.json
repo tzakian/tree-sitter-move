@@ -6819,14 +6819,10 @@
           }
         ]
       },
-      "type_generics": {
-        "multiple": true,
+      "type_arguments": {
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "::",
-            "named": false
-          },
           {
             "type": "type_arguments",
             "named": true
@@ -6957,14 +6953,10 @@
           }
         ]
       },
-      "type_generics": {
-        "multiple": true,
+      "type_arguments": {
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "::",
-            "named": false
-          },
           {
             "type": "type_arguments",
             "named": true

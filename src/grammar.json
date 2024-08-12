@@ -5961,19 +5961,10 @@
             "members": [
               {
                 "type": "FIELD",
-                "name": "type_generics",
+                "name": "type_arguments",
                 "content": {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "::"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "type_arguments"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "type_arguments"
                 }
               },
               {
@@ -6023,19 +6014,10 @@
             "members": [
               {
                 "type": "FIELD",
-                "name": "type_generics",
+                "name": "type_arguments",
                 "content": {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "::"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "type_arguments"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "type_arguments"
                 }
               },
               {

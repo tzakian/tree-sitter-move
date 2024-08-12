@@ -848,13 +848,13 @@ module.exports = grammar({
     )),
     receiver_call: $ => prec.left(PRECEDENCE.call, seq(
       field('receiver', $._dot_or_index_chain), '.', field('func', $.identifier),
-      optional(field('type_generics', seq('::', $.type_arguments))),
+      optional(field('type_arguments', $.type_arguments)),
       field('arguments', $.arg_list),
     )),
     receiver_macro_call: $ => prec.left(PRECEDENCE.call, seq(
       field('receiver', $._dot_or_index_chain), '.', field('func', $.identifier),
-      optional(field('type_generics', seq('::', $.type_arguments))),
        "!",
+       optional(field('type_arguments', $.type_arguments)),
       field('arguments', $.arg_list),
     )),
     access_field: $ => prec.left(PRECEDENCE.field, seq(
