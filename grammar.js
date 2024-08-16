@@ -858,7 +858,7 @@ module.exports = grammar({
       field('arguments', $.arg_list),
     )),
     access_field: $ => prec.left(PRECEDENCE.field, seq(
-      field('object', $._dot_or_index_chain), '.', field('field', $.identifier),
+      field('object', $._dot_or_index_chain), '.',field('field', choice($._expression)),
     )),
 
     // Expression end

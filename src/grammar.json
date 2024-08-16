@@ -6010,6 +6010,10 @@
             }
           },
           {
+            "type": "STRING",
+            "value": "!"
+          },
+          {
             "type": "CHOICE",
             "members": [
               {
@@ -6024,10 +6028,6 @@
                 "type": "BLANK"
               }
             ]
-          },
-          {
-            "type": "STRING",
-            "value": "!"
           },
           {
             "type": "FIELD",
@@ -6062,8 +6062,13 @@
             "type": "FIELD",
             "name": "field",
             "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              ]
             }
           }
         ]
