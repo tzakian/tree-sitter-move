@@ -6963,10 +6963,14 @@
           }
         ]
       },
-      "type_arguments": {
-        "multiple": false,
+      "type_generics": {
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "::",
+            "named": false
+          },
           {
             "type": "type_arguments",
             "named": true

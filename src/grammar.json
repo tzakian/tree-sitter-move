@@ -5961,10 +5961,19 @@
             "members": [
               {
                 "type": "FIELD",
-                "name": "type_arguments",
+                "name": "type_generics",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "type_arguments"
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "::"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "type_arguments"
+                    }
+                  ]
                 }
               },
               {
