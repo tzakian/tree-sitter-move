@@ -28,7 +28,7 @@ const PRECEDENCE = {
 }
 
 module.exports = grammar({
-  name: 'move',
+  name: 'move_on_sui',
   extras: $ => [$._whitespace, $.line_comment, $.block_comment, $.newline, $.annotation],
   word: $ => $.identifier,
   supertypes: $ => [$._spec_block_target],
@@ -848,6 +848,8 @@ module.exports = grammar({
     )),
     receiver_call: $ => prec.left(PRECEDENCE.call, seq(
       field('receiver', $._dot_or_index_chain), '.', field('func', $.identifier),
+      // TODO: read type arguments, they way ther are implemented, they conflict with a 
+      // x.y < z binary expression.
       field('arguments', $.arg_list),
     )),
     receiver_macro_call: $ => prec.left(PRECEDENCE.call, seq(
