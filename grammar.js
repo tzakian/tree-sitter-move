@@ -519,9 +519,15 @@ module.exports = grammar({
     // type parameter grammar
     type_parameters: $ => seq('<', sepBy1(',', $.type_parameter), '>'),
     type_parameter: $ => seq(
-      optional('$'),
-      optional('phantom'),
-      $._type_parameter_identifier,
+      choice(
+        prec(5,seq(
+        '$',
+        optional('phantom'),
+        $._type_parameter_identifier)),
+        seq(
+          optional('phantom'),
+          $._type_parameter_identifier),   
+      ),
       optional(seq(':',
         sepBy1('+', $.ability)
       ))
