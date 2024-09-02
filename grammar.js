@@ -28,7 +28,7 @@ const PRECEDENCE = {
 }
 
 module.exports = grammar({
-  name: 'move',
+  name: 'move_on_sui',
   extras: $ => [$._whitespace, $.line_comment, $.block_comment, $.newline, $.annotation],
   word: $ => $.identifier,
   supertypes: $ => [$._spec_block_target],
@@ -40,6 +40,9 @@ module.exports = grammar({
     [$.module_access, $._variable_identifier],
     [$.modifier, $.native_struct_definition],
     [$._expression, $._binary_operand],
+  ],
+  inline: $ => [
+    $._dot_or_index_chain,
   ],
 
   rules: {
@@ -516,9 +519,15 @@ module.exports = grammar({
     // type parameter grammar
     type_parameters: $ => seq('<', sepBy1(',', $.type_parameter), '>'),
     type_parameter: $ => seq(
-      optional('$'),
-      optional('phantom'),
-      $._type_parameter_identifier,
+      choice(
+        prec(5,seq(
+        '$',
+        optional('phantom'),
+        $._type_parameter_identifier)),
+        seq(
+          optional('phantom'),
+          $._type_parameter_identifier),   
+      ),
       optional(seq(':',
         sepBy1('+', $.ability)
       ))
@@ -732,6 +741,7 @@ module.exports = grammar({
       $.dereference_expression,
       $.move_or_copy_expression,
       $._expression_term,
+      $._dot_or_index_chain,
     )),
     unary_expression: $ => seq(
       field('op', $.unary_op),
@@ -760,7 +770,7 @@ module.exports = grammar({
       $.continue_expression,
       $.name_expression,
       $.call_expression,
-      $.macro_call_expression,
+      $.macro_call_expression, 
       $.pack_expression,
       $._literal_value,
       $.unit_expression,
@@ -769,9 +779,6 @@ module.exports = grammar({
       $.block,
       $.spec_block,
       $.if_expression,
-
-      $.dot_expression,
-      $.index_expression,
       $.vector_expression,
       $.match_expression,
     ),
@@ -831,17 +838,34 @@ module.exports = grammar({
       ')'
     ),
 
+    _dot_or_index_chain: $ => choice(
+      $.access_field,
+      $.receiver_call,
+      $.receiver_macro_call,
+      $.index_expression,
+      $._expression_term,
+    ),
 
-    dot_expression: $ => prec.left(PRECEDENCE.field, seq(
-      field('expr', $._expression_term),
-      '.',
-      field('access', $._expression_term),
-    )),
     index_expression: $ => prec.left(PRECEDENCE.call, seq(
       field('expr',
-        $._expression_term,
+        $._dot_or_index_chain,
       ),
       '[', sepBy(',', field('idx', $._expression)), ']'
+    )),
+    receiver_call: $ => prec.left(PRECEDENCE.call, seq(
+      field('receiver', $._dot_or_index_chain), '.', field('func', $.identifier),
+      // TODO: read type arguments, they way ther are implemented, they conflict with a 
+      // x.y < z binary expression.
+      field('arguments', $.arg_list),
+    )),
+    receiver_macro_call: $ => prec.left(PRECEDENCE.call, seq(
+      field('receiver', $._dot_or_index_chain), '.', field('func', $.identifier),
+       "!",
+       optional(field('type_arguments', $.type_arguments)),
+      field('arguments', $.arg_list),
+    )),
+    access_field: $ => prec.left(PRECEDENCE.field, seq(
+      field('object', $._dot_or_index_chain), '.',field('field', choice($._expression)),
     )),
 
     // Expression end
@@ -910,7 +934,9 @@ module.exports = grammar({
     label: $ => seq('\'', $.identifier),
     address_literal: $ => /@0x[a-fA-F0-9]+/,
     bool_literal: $ => choice('true', 'false'),
-    num_literal: $ => choice(/[0-9][0-9_]*(?:u8|u16|u32|u64|u128|u256)?/, /0x[a-fA-F0-9_]+/),
+    typed_num_literal: $ => /[0-9][0-9_]*(?:u8|u16|u32|u64|u128|u256)?/,
+    untyped_num_literal: $ => /0x[a-fA-F0-9_]+/,
+    num_literal: $ => choice($.typed_num_literal, $.untyped_num_literal),
     hex_string_literal: $ => /x"[0-9a-fA-F]*"/,
     byte_string_literal: $ => /b"(\\.|[^\\"])*"/,
     _module_identifier: $ => alias($.identifier, $.module_identifier),
