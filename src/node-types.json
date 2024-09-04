@@ -1413,6 +1413,10 @@
           "named": true
         },
         {
+          "type": "bind_var",
+          "named": true
+        },
+        {
           "type": "bool_literal",
           "named": true
         },
@@ -1504,6 +1508,21 @@
       "types": [
         {
           "type": "module_access",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bind_var",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "variable_identifier",
           "named": true
         }
       ]
@@ -2333,6 +2352,10 @@
         },
         {
           "type": "bind_unpack",
+          "named": true
+        },
+        {
+          "type": "bind_var",
           "named": true
         },
         {
@@ -4489,44 +4512,83 @@
   {
     "type": "lambda_bindings",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "address_literal",
-          "named": true
-        },
-        {
-          "type": "bind_list",
-          "named": true
-        },
-        {
-          "type": "bind_unpack",
-          "named": true
-        },
-        {
-          "type": "bool_literal",
-          "named": true
-        },
-        {
-          "type": "byte_string_literal",
-          "named": true
-        },
-        {
-          "type": "hex_string_literal",
-          "named": true
-        },
-        {
-          "type": "num_literal",
-          "named": true
-        },
-        {
-          "type": "variable_identifier",
-          "named": true
-        }
-      ]
+    "fields": {
+      "bind": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "@",
+            "named": false
+          },
+          {
+            "type": "address_literal",
+            "named": true
+          },
+          {
+            "type": "bind_list",
+            "named": true
+          },
+          {
+            "type": "bind_unpack",
+            "named": true
+          },
+          {
+            "type": "bind_var",
+            "named": true
+          },
+          {
+            "type": "bool_literal",
+            "named": true
+          },
+          {
+            "type": "byte_string_literal",
+            "named": true
+          },
+          {
+            "type": "hex_string_literal",
+            "named": true
+          },
+          {
+            "type": "mut",
+            "named": false
+          },
+          {
+            "type": "num_literal",
+            "named": true
+          },
+          {
+            "type": "variable_identifier",
+            "named": true
+          }
+        ]
+      },
+      "ty": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "apply_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "primitive_type",
+            "named": true
+          },
+          {
+            "type": "ref_type",
+            "named": true
+          },
+          {
+            "type": "tuple_type",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -6161,6 +6223,10 @@
         },
         {
           "type": "bind_unpack",
+          "named": true
+        },
+        {
+          "type": "bind_var",
           "named": true
         },
         {
