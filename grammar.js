@@ -40,6 +40,9 @@ module.exports = grammar({
     [$.module_access, $._variable_identifier],
     [$.modifier, $.native_struct_definition],
     [$._expression, $._binary_operand],
+    [$.bind_list, $.or_bind_list],
+    [$.comma_bind_list, $.or_bind_list],
+    [$.or_bind_list],
   ],
 
   rules: {
@@ -855,19 +858,21 @@ module.exports = grammar({
       ))
     ),
 
-    // The bindlist is enclosed in parenthesis, except that the parenthesis are
-    // optional if there is a single Bind.
     bind_list: $ => choice(
       $._bind,
-      seq('(', sepBy(',', $._bind), ')')
+      $.comma_bind_list,
+      $.or_bind_list,
     ),
+    comma_bind_list: $ => seq('(', sepBy(',', $._bind), ')'),
+    or_bind_list: $ => seq(optional('('), sepBy1('|', $._bind), optional(')')),
     _bind: $ => choice(
       seq(
         optional('mut'),
         alias($._variable_identifier, $.bind_var)
       ),
       $.bind_unpack,
-      seq($._variable_identifier, '@', $._bind),
+      seq($._variable_identifier, '@', $.bind_list),
+      $._literal_value,
     ),
     bind_unpack: $ => seq(
       $.module_access,
@@ -891,7 +896,7 @@ module.exports = grammar({
       field('field', choice($._expression)), // direct bind
       optional(seq(
         ':',
-        field('bind', $._bind)
+        field('bind', $.bind_list)
       ))
     ), $._spread_operator),
     // Fields and Bindings - End
