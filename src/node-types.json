@@ -9146,6 +9146,14 @@
     "named": false
   },
   {
+    "type": "(friend)",
+    "named": false
+  },
+  {
+    "type": "(package)",
+    "named": false
+  },
+  {
     "type": ")",
     "named": false
   },
@@ -9431,14 +9439,6 @@
   },
   {
     "type": "public",
-    "named": false
-  },
-  {
-    "type": "public(friend)",
-    "named": false
-  },
-  {
-    "type": "public(package)",
     "named": false
   },
   {
