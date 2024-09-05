@@ -4426,6 +4426,23 @@
         }
       ]
     },
+    "match_condition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "FIELD",
+          "name": "condition",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        }
+      ]
+    },
     "match_arm": {
       "type": "SEQ",
       "members": [
@@ -4437,21 +4454,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "if"
-                },
-                {
-                  "type": "FIELD",
-                  "name": "arm_guard",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "_expression"
-                  }
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "match_condition"
             },
             {
               "type": "BLANK"
@@ -6065,6 +6069,23 @@
         }
       ]
     },
+    "at_bind": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_variable_identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bind_list"
+        }
+      ]
+    },
     "comma_bind_list": {
       "type": "SEQ",
       "members": [
@@ -6211,21 +6232,8 @@
           "name": "bind_unpack"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_variable_identifier"
-            },
-            {
-              "type": "STRING",
-              "value": "@"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "bind_list"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "at_bind"
         },
         {
           "type": "SYMBOL",

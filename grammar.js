@@ -670,13 +670,13 @@ module.exports = grammar({
       '}',
     ),
 
+    match_condition: $ => seq(
+      'if', field('condition', $._expression)
+    ),
+
     match_arm: $ => seq(
       $.bind_list,
-      optional(seq(
-        'if',
-        field('arm_guard', $._expression)
-      )
-      ),
+      optional($.match_condition),
       '=>',
       $._expression,
     ),
@@ -867,6 +867,7 @@ module.exports = grammar({
       $.comma_bind_list,
       $.or_bind_list,
     ),
+    at_bind: $ => seq($._variable_identifier, '@', $.bind_list),
     comma_bind_list: $ => seq('(', sepBy(',', $._bind), ')'),
     or_bind_list: $ => seq(optional('('), sepBy1('|', $._bind), optional(')')),
     _bind: $ => choice(
@@ -875,7 +876,7 @@ module.exports = grammar({
         alias($._variable_identifier, $.bind_var)
       ),
       $.bind_unpack,
-      seq($._variable_identifier, '@', $.bind_list),
+      $.at_bind,
       $._literal_value,
     ),
     bind_unpack: $ => seq(
