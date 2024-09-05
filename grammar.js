@@ -37,12 +37,14 @@ module.exports = grammar({
     [$._expression, $._expression_term],
     [$.function_type_parameters],
     [$.module_access, $._variable_identifier],
+    [$.module_access, $._module_identifier],
     [$.modifier, $.native_struct_definition],
     [$._expression, $._binary_operand],
     [$.bind_list, $.or_bind_list],
     [$.comma_bind_list, $.or_bind_list],
     [$.or_bind_list],
     [$.name_expression],
+    [$.module_access],
   ],
 
   rules: {
@@ -695,6 +697,7 @@ module.exports = grammar({
       field('body', $.field_initialize_list),
     ),
     name_expression: $ => seq(
+      optional('::'),
       field('access', $.module_access),
       optional(field('type_arguments', $.type_arguments)),
     ),
