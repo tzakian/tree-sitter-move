@@ -6005,48 +6005,122 @@
           "name": "_bind"
         },
         {
+          "type": "SYMBOL",
+          "name": "comma_bind_list"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "or_bind_list"
+        }
+      ]
+    },
+    "comma_bind_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
           "type": "SEQ",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_bind"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_bind"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "or_bind_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
           "members": [
             {
               "type": "STRING",
               "value": "("
             },
             {
-              "type": "SEQ",
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_bind"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "|"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_bind"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
               "members": [
                 {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "_bind"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": ","
-                      }
-                    ]
-                  }
+                  "type": "STRING",
+                  "value": "|"
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_bind"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "BLANK"
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
             {
               "type": "STRING",
               "value": ")"
+            },
+            {
+              "type": "BLANK"
             }
           ]
         }
@@ -6077,7 +6151,7 @@
                 "name": "_variable_identifier"
               },
               "named": true,
-              "value": "bind_var"
+              "value": "bind_list"
             }
           ]
         },
@@ -6098,9 +6172,13 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_bind"
+              "name": "bind_list"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_literal_value"
         }
       ]
     },
@@ -6300,7 +6378,7 @@
                       "name": "bind",
                       "content": {
                         "type": "SYMBOL",
-                        "name": "_bind"
+                        "name": "bind_list"
                       }
                     }
                   ]
@@ -6615,6 +6693,17 @@
     [
       "_expression",
       "_binary_operand"
+    ],
+    [
+      "bind_list",
+      "or_bind_list"
+    ],
+    [
+      "comma_bind_list",
+      "or_bind_list"
+    ],
+    [
+      "or_bind_list"
     ]
   ],
   "precedences": [],
