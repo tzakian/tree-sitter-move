@@ -4551,6 +4551,18 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "::"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "FIELD",
           "name": "access",
           "content": {
@@ -6705,6 +6717,10 @@
       "_variable_identifier"
     ],
     [
+      "module_access",
+      "_module_identifier"
+    ],
+    [
       "modifier",
       "native_struct_definition"
     ],
@@ -6725,6 +6741,9 @@
     ],
     [
       "name_expression"
+    ],
+    [
+      "module_access"
     ]
   ],
   "precedences": [],
