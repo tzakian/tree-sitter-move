@@ -4510,12 +4510,12 @@
     }
   },
   {
-    "type": "lambda_bindings",
+    "type": "lambda_binding",
     "named": true,
     "fields": {
       "bind": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "@",
@@ -4564,7 +4564,7 @@
         ]
       },
       "ty": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -4589,6 +4589,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "lambda_bindings",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "lambda_binding",
+          "named": true
+        }
+      ]
     }
   },
   {

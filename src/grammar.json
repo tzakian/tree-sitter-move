@@ -4071,6 +4071,57 @@
         }
       ]
     },
+    "lambda_binding": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "bind",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_bind"
+          }
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "bind",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_bind"
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ":"
+                    },
+                    {
+                      "type": "FIELD",
+                      "name": "ty",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_type"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     "lambda_bindings": {
       "type": "SEQ",
       "members": [
@@ -4087,42 +4138,8 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "FIELD",
-                        "name": "bind",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "_bind"
-                        }
-                      },
-                      {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SEQ",
-                            "members": [
-                              {
-                                "type": "STRING",
-                                "value": ":"
-                              },
-                              {
-                                "type": "FIELD",
-                                "name": "ty",
-                                "content": {
-                                  "type": "SYMBOL",
-                                  "name": "_type"
-                                }
-                              }
-                            ]
-                          },
-                          {
-                            "type": "BLANK"
-                          }
-                        ]
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "lambda_binding"
                   },
                   {
                     "type": "STRING",
@@ -4135,42 +4152,8 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "FIELD",
-                      "name": "bind",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "_bind"
-                      }
-                    },
-                    {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "SEQ",
-                          "members": [
-                            {
-                              "type": "STRING",
-                              "value": ":"
-                            },
-                            {
-                              "type": "FIELD",
-                              "name": "ty",
-                              "content": {
-                                "type": "SYMBOL",
-                                "name": "_type"
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "type": "BLANK"
-                        }
-                      ]
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "lambda_binding"
                 },
                 {
                   "type": "BLANK"
