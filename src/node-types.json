@@ -2139,16 +2139,6 @@
     "type": "call_expression",
     "named": true,
     "fields": {
-      "access": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "module_access",
-            "named": true
-          }
-        ]
-      },
       "args": {
         "multiple": false,
         "required": true,
@@ -2158,17 +2148,17 @@
             "named": true
           }
         ]
-      },
-      "type_arguments": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "type_arguments",
-            "named": true
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "name_expression",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -6279,16 +6269,6 @@
     "type": "pack_expression",
     "named": true,
     "fields": {
-      "access": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "module_access",
-            "named": true
-          }
-        ]
-      },
       "body": {
         "multiple": false,
         "required": true,
@@ -6298,17 +6278,17 @@
             "named": true
           }
         ]
-      },
-      "type_arguments": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "type_arguments",
-            "named": true
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "name_expression",
+          "named": true
+        }
+      ]
     }
   },
   {
