@@ -29,7 +29,7 @@ const PRECEDENCE = {
 
 module.exports = grammar({
   name: 'move_on_sui',
-  extras: $ => [$._whitespace, $.line_comment, $.block_comment, $.newline, $.annotation],
+  extras: $ => [$._whitespace, $.line_comment, $.block_comment, $._newline, $.annotation],
   word: $ => $.identifier,
   supertypes: $ => [$._spec_block_target],
   conflicts: $ => [
@@ -957,7 +957,7 @@ module.exports = grammar({
     line_comment: $ => token(seq(
       '//', /.*/
     )),
-    newline: $ => token(/\n/),
+    _newline: $ => token(/\n/),
     _whitespace: $ => /\s/,
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
     block_comment: $ => token(seq(

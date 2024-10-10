@@ -6667,7 +6667,7 @@
         ]
       }
     },
-    "newline": {
+    "_newline": {
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
@@ -6714,7 +6714,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "newline"
+      "name": "_newline"
     },
     {
       "type": "SYMBOL",
