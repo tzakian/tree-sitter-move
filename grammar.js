@@ -673,7 +673,10 @@ module.exports = grammar({
     ),
 
     match_condition: $ => seq(
-      'if', field('condition', $._expression)
+      'if',
+      '(',
+      field('condition', $._expression),
+      ')',
     ),
 
     match_arm: $ => seq(

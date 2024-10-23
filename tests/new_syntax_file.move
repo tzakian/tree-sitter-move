@@ -87,7 +87,7 @@ module foo::bar {
         let NewPoster::Variant<T>(mut y, z, i) = x.new();
         match (s) {
             NewPoster::Variant(x) => something,
-            NewPoster::Variant{ x } if true => something,
+            NewPoster::Variant{ x } if (true) => something,
             y @ bar => @0x1,
         };
         x.foreach!(|y| { x = y; });

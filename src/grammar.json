@@ -4434,12 +4434,20 @@
           "value": "if"
         },
         {
+          "type": "STRING",
+          "value": "("
+        },
+        {
           "type": "FIELD",
           "name": "condition",
           "content": {
             "type": "SYMBOL",
             "name": "_expression"
           }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
