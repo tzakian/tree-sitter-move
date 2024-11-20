@@ -9236,14 +9236,6 @@
     "named": false
   },
   {
-    "type": "(friend)",
-    "named": false
-  },
-  {
-    "type": "(package)",
-    "named": false
-  },
-  {
     "type": ")",
     "named": false
   },
@@ -9514,6 +9506,10 @@
   {
     "type": "newline",
     "named": true
+  },
+  {
+    "type": "package",
+    "named": false
   },
   {
     "type": "phantom",
