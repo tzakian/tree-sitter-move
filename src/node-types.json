@@ -995,11 +995,19 @@
         "required": true,
         "types": [
           {
+            "type": "abort_expression",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
           {
             "type": "annotation_expression",
+            "named": true
+          },
+          {
+            "type": "assign_expression",
             "named": true
           },
           {
@@ -1055,11 +1063,23 @@
             "named": true
           },
           {
+            "type": "identified_expression",
+            "named": true
+          },
+          {
             "type": "if_expression",
             "named": true
           },
           {
             "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "loop_expression",
             "named": true
           },
           {
@@ -1087,6 +1107,14 @@
             "named": true
           },
           {
+            "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
             "type": "spec_block",
             "named": true
           },
@@ -1100,6 +1128,10 @@
           },
           {
             "type": "vector_expression",
+            "named": true
+          },
+          {
+            "type": "while_expression",
             "named": true
           }
         ]
@@ -1119,11 +1151,19 @@
         "required": true,
         "types": [
           {
+            "type": "abort_expression",
+            "named": true
+          },
+          {
             "type": "address_literal",
             "named": true
           },
           {
             "type": "annotation_expression",
+            "named": true
+          },
+          {
+            "type": "assign_expression",
             "named": true
           },
           {
@@ -1179,11 +1219,23 @@
             "named": true
           },
           {
+            "type": "identified_expression",
+            "named": true
+          },
+          {
             "type": "if_expression",
             "named": true
           },
           {
             "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "loop_expression",
             "named": true
           },
           {
@@ -1211,6 +1263,14 @@
             "named": true
           },
           {
+            "type": "quantifier_expression",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
             "type": "spec_block",
             "named": true
           },
@@ -1224,6 +1284,10 @@
           },
           {
             "type": "vector_expression",
+            "named": true
+          },
+          {
+            "type": "while_expression",
             "named": true
           }
         ]
@@ -1505,16 +1569,6 @@
             "named": true
           }
         ]
-      },
-      "type_arguments": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "type_arguments",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -1522,7 +1576,7 @@
       "required": true,
       "types": [
         {
-          "type": "module_access",
+          "type": "name_expression",
           "named": true
         }
       ]
@@ -5757,6 +5811,16 @@
           }
         ]
       },
+      "type_arguments": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_arguments",
+            "named": true
+          }
+        ]
+      },
       "variant": {
         "multiple": false,
         "required": false,
@@ -6048,16 +6112,6 @@
         "types": [
           {
             "type": "module_access",
-            "named": true
-          }
-        ]
-      },
-      "type_arguments": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "type_arguments",
             "named": true
           }
         ]

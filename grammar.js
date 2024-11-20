@@ -39,11 +39,9 @@ module.exports = grammar({
     [$.module_access, $._variable_identifier],
     [$.module_access, $._module_identifier],
     [$.modifier, $.native_struct_definition],
-    [$._expression, $._binary_operand],
     [$.bind_list, $.or_bind_list],
     [$.comma_bind_list, $.or_bind_list],
     [$.or_bind_list],
-    [$.name_expression],
     [$.module_access],
   ],
 
@@ -462,18 +460,34 @@ module.exports = grammar({
       // address access
       seq('@', field('member', $.identifier)),
       field('member', alias($._reserved_identifier, $.identifier)),
-      field('member', $.identifier),
+      seq(
+        field('member', $.identifier),
+        optional(field('type_arguments', $.type_arguments)),
+      ),
       seq(
         field('module', $._module_identifier),
+        optional(field('type_arguments', $.type_arguments)),
+        '::',
+        field('member', $.identifier)
+      ),
+      seq(
+        $.module_identity,
+        optional(field('type_arguments', $.type_arguments)),
+      ),
+      seq(
+        $.module_identity,
+        optional(field('type_arguments', $.type_arguments)),
         '::',
         field('member', $.identifier)
       ),
       seq(
         $.module_identity,
         '::',
-        field('member', $.identifier)
+        field('enum_name', $.identifier),
+        optional(field('type_arguments', $.type_arguments)),
+        '::',
+        field('variant', $.identifier)
       ),
-      seq($.module_identity, '::', field('enum_name', $.identifier), '::', field('variant', $.identifier)),
     ),
 
     friend_access: $ => choice(
@@ -483,11 +497,12 @@ module.exports = grammar({
 
     macro_module_access: $ => seq(field("access", $.module_access), "!"),
 
-    module_identity: $ => seq(
-      field('address', choice($.num_literal, $._module_identifier)),
-      '::',
-      field('module', $._module_identifier)
-    ),
+    module_identity: $ =>
+      seq(
+        field('address', choice($.num_literal, $._module_identifier)),
+        '::',
+        field('module', $._module_identifier)
+      ),
 
     type_arguments: $ => seq(
       '<',
@@ -562,7 +577,6 @@ module.exports = grammar({
       $.lambda_expression,
       $.if_expression,
       $.while_expression,
-      $.loop_expression,
       $.return_expression,
       $.abort_expression,
       $.assign_expression,
@@ -571,9 +585,10 @@ module.exports = grammar({
       $.binary_expression,
       $.cast_expression,
       $.quantifier_expression,
-      $.identified_expression,
       $.match_expression,
       $.vector_expression,
+      $.loop_expression,
+      $.identified_expression,
     ),
 
     identified_expression: $ => seq(
@@ -659,7 +674,7 @@ module.exports = grammar({
     abort_expression: $ => seq('abort', field('abort', $._expression)),
 
     match_expression: $ => seq(
-      "match",
+      'match',
       '(',
       field('match_scrutiny', $._expression),
       ')',
@@ -702,7 +717,6 @@ module.exports = grammar({
     name_expression: $ => seq(
       optional('::'),
       field('access', $.module_access),
-      optional(field('type_arguments', $.type_arguments)),
     ),
 
     assign_expression: $ => prec.left(PRECEDENCE.assign,
@@ -713,14 +727,6 @@ module.exports = grammar({
       )
     ),
 
-    //      BinOpExp =
-    //          <BinOpExp> <BinOp> <BinOpExp>
-    //          | <UnaryExp>
-    _binary_operand: $ => choice(
-      $._unary_expression,
-      $.binary_expression,
-      $.cast_expression,
-    ),
     binary_expression: $ => {
       const table = [
         [PRECEDENCE.implies, '==>'],
@@ -747,9 +753,9 @@ module.exports = grammar({
 
       let binary_expression = choice(...table.map(
         ([precedence, operator]) => prec.left(precedence, seq(
-          field('lhs', $._binary_operand),
+          field('lhs', $._expression),
           field('operator', alias(operator, $.binary_operator)),
-          field('rhs', $._binary_operand),
+          field('rhs', $._expression),
         ))
       ));
 
@@ -873,7 +879,7 @@ module.exports = grammar({
     ),
     at_bind: $ => seq($._variable_identifier, '@', $.bind_list),
     comma_bind_list: $ => seq('(', sepBy(',', $._bind), ')'),
-    or_bind_list: $ => seq(optional('('), sepBy1('|', $._bind), optional(')')),
+    or_bind_list: $ => seq(optional('('), sepBy1('|', seq(optional('('), $._bind, optional(')'))), optional(')')),
     _bind: $ => choice(
       seq(
         optional('mut'),
@@ -884,8 +890,7 @@ module.exports = grammar({
       $._literal_value,
     ),
     bind_unpack: $ => seq(
-      $.module_access,
-      optional(field('type_arguments', $.type_arguments)),
+      $.name_expression,
       optional(field('bind_fields', $.bind_fields)),
     ),
     bind_fields: $ => choice(
@@ -922,7 +927,7 @@ module.exports = grammar({
 
     block_identifier: $ => seq($.label, ':'),
     label: $ => seq('\'', $.identifier),
-    address_literal: $ => /@0x[a-fA-F0-9]+/,
+    address_literal: $ => /@(0x[a-fA-F0-9]+|[0-9]+)/,
     bool_literal: $ => choice('true', 'false'),
     num_literal: $ => choice(/[0-9][0-9_]*(?:u8|u16|u32|u64|u128|u256)?/, /0x[a-fA-F0-9_]+/),
     hex_string_literal: $ => /x"[0-9a-fA-F]*"/,
