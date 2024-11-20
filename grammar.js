@@ -42,6 +42,7 @@ module.exports = grammar({
     [$.bind_list, $.or_bind_list],
     [$.comma_bind_list, $.or_bind_list],
     [$.or_bind_list],
+    [$._bind],
     [$.module_access],
   ],
 
@@ -904,10 +905,9 @@ module.exports = grammar({
     bind_named_fields: $ => seq(
       '{', sepBy(',', $.bind_field), '}'
     ),
-    // not sure if it should be here
     bind_field: $ => choice(seq(
       optional('mut'),
-      field('field', choice($._expression)), // direct bind
+      field('field', $.bind_list), // direct bind
       optional(seq(
         ':',
         field('bind', $.bind_list)

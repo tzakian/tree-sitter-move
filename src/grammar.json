@@ -6500,13 +6500,8 @@
               "type": "FIELD",
               "name": "field",
               "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_expression"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "bind_list"
               }
             },
             {
@@ -6845,6 +6840,9 @@
     ],
     [
       "or_bind_list"
+    ],
+    [
+      "_bind"
     ],
     [
       "module_access"
