@@ -6676,7 +6676,7 @@
     "named": true,
     "fields": {
       "mutable": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
@@ -6684,7 +6684,7 @@
             "named": false
           },
           {
-            "type": "&mut",
+            "type": "mut",
             "named": false
           }
         ]
@@ -9287,10 +9287,6 @@
   },
   {
     "type": "&",
-    "named": false
-  },
-  {
-    "type": "&mut",
     "named": false
   },
   {

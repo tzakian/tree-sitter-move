@@ -452,7 +452,7 @@ module.exports = grammar({
       optional(field('type_arguments', $.type_arguments)),
     )),
     ref_type: $ => seq(
-      field('mutable', choice('&', '&mut')),
+      field('mutable', $._reference),
       $._type
     ),
     tuple_type: $ => seq('(', sepBy(',', $._type), ')'),
@@ -799,7 +799,7 @@ module.exports = grammar({
     )),
     // borrow
     borrow_expression: $ => prec(PRECEDENCE.unary, seq(
-      choice('&', '&mut'),
+      $._reference,
       field('expr', $._expression),
     )),
     // move or copy
@@ -807,6 +807,8 @@ module.exports = grammar({
       choice('move', 'copy'),
       field('expr', $._expression),
     )),
+
+    _reference: $ => seq('&', optional('mut')),
 
     _expression_term: $ => choice(
       $.call_expression,

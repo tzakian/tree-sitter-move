@@ -2925,17 +2925,8 @@
           "type": "FIELD",
           "name": "mutable",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "&"
-              },
-              {
-                "type": "STRING",
-                "value": "&mut"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_reference"
           }
         },
         {
@@ -5560,17 +5551,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "&"
-              },
-              {
-                "type": "STRING",
-                "value": "&mut"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_reference"
           },
           {
             "type": "FIELD",
@@ -5612,6 +5594,27 @@
           }
         ]
       }
+    },
+    "_reference": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "&"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "mut"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "_expression_term": {
       "type": "CHOICE",
