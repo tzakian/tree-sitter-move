@@ -41,9 +41,11 @@ module.exports = grammar({
     [$.modifier, $.native_struct_definition],
     [$.bind_list, $.or_bind_list],
     [$.comma_bind_list, $.or_bind_list],
+    [$.break_expression, $.block_identifier],
     [$.or_bind_list],
     [$._bind],
     [$.module_access],
+    [$.break_expression],
   ],
 
   rules: {
@@ -681,7 +683,7 @@ module.exports = grammar({
     return_expression: $ => prec.left(seq(
       'return',
       optional(field('label', $.label)),
-      optional(field('return', choice($._expression_term, $._expression)))
+      optional(field('return', $._expression))
     )),
 
     // abort expression
@@ -828,7 +830,7 @@ module.exports = grammar({
     break_expression: $ => seq(
       'break',
       optional(field('label', $.label)),
-      optional(field('break', $._expression_term))
+      optional(field('break', $._expression))
     ),
     continue_expression: $ => seq(
       'continue',

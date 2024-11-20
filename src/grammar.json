@@ -4417,17 +4417,8 @@
                 "type": "FIELD",
                 "name": "return",
                 "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_expression_term"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "_expression"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "_expression"
                 }
               },
               {
@@ -5722,7 +5713,7 @@
               "name": "break",
               "content": {
                 "type": "SYMBOL",
-                "name": "_expression_term"
+                "name": "_expression"
               }
             },
             {
@@ -6849,6 +6840,10 @@
       "or_bind_list"
     ],
     [
+      "break_expression",
+      "block_identifier"
+    ],
+    [
       "or_bind_list"
     ],
     [
@@ -6856,6 +6851,9 @@
     ],
     [
       "module_access"
+    ],
+    [
+      "break_expression"
     ]
   ],
   "precedences": [],
