@@ -4179,6 +4179,10 @@
       "type": "CHOICE",
       "members": [
         {
+          "type": "SYMBOL",
+          "name": "comma_bind_list"
+        },
+        {
           "type": "FIELD",
           "name": "bind",
           "content": {

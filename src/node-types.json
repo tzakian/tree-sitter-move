@@ -4490,7 +4490,7 @@
     "fields": {
       "bind": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "address_literal",
@@ -4556,6 +4556,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "comma_bind_list",
+          "named": true
+        }
+      ]
     }
   },
   {

@@ -644,6 +644,7 @@ module.exports = grammar({
       field('expr', $._expression)
     ),
     lambda_binding: $ => choice(
+      $.comma_bind_list,
       field('bind', $._bind),
       seq(field('bind', $._bind), optional(seq(':', field('ty', $._type)))),
     ),
