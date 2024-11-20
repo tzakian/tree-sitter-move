@@ -278,6 +278,7 @@ module.exports = grammar({
     _function_signature: $ => seq(
       optional($.modifier),
       optional($.modifier),
+      optional($.modifier),
       'fun',
       field('name', $._function_identifier),
       optional(field('type_parameters', $.type_parameters)),
