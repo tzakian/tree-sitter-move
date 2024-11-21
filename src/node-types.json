@@ -1318,6 +1318,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "mut_modifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1344,7 +1354,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -1377,6 +1387,10 @@
         },
         {
           "type": "hex_string_literal",
+          "named": true
+        },
+        {
+          "type": "mut_modifier",
           "named": true
         },
         {
@@ -1945,6 +1959,20 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "imm_ref",
+          "named": true
+        },
+        {
+          "type": "mut_ref",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2347,6 +2375,10 @@
         },
         {
           "type": "hex_string_literal",
+          "named": true
+        },
+        {
+          "type": "mut_modifier",
           "named": true
         },
         {
@@ -3526,6 +3558,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "mut_modifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4228,6 +4270,11 @@
     }
   },
   {
+    "type": "imm_ref",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "index_expression",
     "named": true,
     "fields": {
@@ -4521,8 +4568,8 @@
             "named": true
           },
           {
-            "type": "mut",
-            "named": false
+            "type": "mut_modifier",
+            "named": true
           },
           {
             "type": "num_literal",
@@ -6033,6 +6080,27 @@
     }
   },
   {
+    "type": "mut_modifier",
+    "named": true,
+    "fields": {
+      "mut_modifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "mut",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "mut_ref",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "name_expression",
     "named": true,
     "fields": {
@@ -6240,6 +6308,10 @@
         },
         {
           "type": "hex_string_literal",
+          "named": true
+        },
+        {
+          "type": "mut_modifier",
           "named": true
         },
         {
@@ -6674,24 +6746,9 @@
   {
     "type": "ref_type",
     "named": true,
-    "fields": {
-      "mutable": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "&",
-            "named": false
-          },
-          {
-            "type": "mut",
-            "named": false
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -6700,6 +6757,14 @@
         },
         {
           "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "imm_ref",
+          "named": true
+        },
+        {
+          "type": "mut_ref",
           "named": true
         },
         {

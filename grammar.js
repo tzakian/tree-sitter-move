@@ -453,7 +453,7 @@ module.exports = grammar({
       optional(field('type_arguments', $.type_arguments)),
     )),
     ref_type: $ => seq(
-      field('mutable', $._reference),
+      $._reference,
       $._type
     ),
     tuple_type: $ => seq('(', sepBy(',', $._type), ')'),
@@ -540,7 +540,7 @@ module.exports = grammar({
 
     // function parameter grammar
     function_parameter: $ => seq(
-      optional('mut'),
+      optional($.mut_modifier),
       choice(
         field('name', $._variable_identifier),
         seq('$', field('name', $._variable_identifier)),
@@ -809,7 +809,10 @@ module.exports = grammar({
       field('expr', $._expression),
     )),
 
-    _reference: $ => seq('&', optional('mut')),
+    _reference: $ => choice(
+      $.imm_ref,
+      $.mut_ref,
+    ),
 
     _expression_term: $ => choice(
       $.call_expression,
@@ -902,7 +905,7 @@ module.exports = grammar({
     or_bind_list: $ => seq(optional('('), sepBy1('|', seq(optional('('), $._bind, optional(')'))), optional(')')),
     _bind: $ => choice(
       seq(
-        optional('mut'),
+        optional($.mut_modifier),
         alias($._variable_identifier, $.bind_var)
       ),
       $.bind_unpack,
@@ -925,7 +928,7 @@ module.exports = grammar({
       '{', sepBy(',', $.bind_field), '}'
     ),
     bind_field: $ => choice(seq(
-      optional('mut'),
+      optional($.mut_modifier),
       field('field', $.bind_list), // direct bind
       optional(seq(
         ':',
@@ -944,6 +947,9 @@ module.exports = grammar({
       // $.vector_literal,
     ),
 
+    imm_ref: $ => '&',
+    mut_ref: $ => seq('&', 'mut'),
+    mut_modifier: $ => field('mut_modifier', 'mut'),
     block_identifier: $ => seq($.label, ':'),
     label: $ => seq('\'', $.identifier),
     address_literal: $ => /@(0x[a-fA-F0-9]+|[0-9]+)/,

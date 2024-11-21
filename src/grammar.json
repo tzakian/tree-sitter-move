@@ -2934,12 +2934,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "mutable",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_reference"
-          }
+          "type": "SYMBOL",
+          "name": "_reference"
         },
         {
           "type": "SYMBOL",
@@ -3497,8 +3493,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "mut"
+              "type": "SYMBOL",
+              "name": "mut_modifier"
             },
             {
               "type": "BLANK"
@@ -5608,23 +5604,15 @@
       }
     },
     "_reference": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "&"
+          "type": "SYMBOL",
+          "name": "imm_ref"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "mut"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "mut_ref"
         }
       ]
     },
@@ -6331,8 +6319,8 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "STRING",
-                  "value": "mut"
+                  "type": "SYMBOL",
+                  "name": "mut_modifier"
                 },
                 {
                   "type": "BLANK"
@@ -6508,8 +6496,8 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "STRING",
-                  "value": "mut"
+                  "type": "SYMBOL",
+                  "name": "mut_modifier"
                 },
                 {
                   "type": "BLANK"
@@ -6581,6 +6569,31 @@
           "name": "byte_string_literal"
         }
       ]
+    },
+    "imm_ref": {
+      "type": "STRING",
+      "value": "&"
+    },
+    "mut_ref": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "&"
+        },
+        {
+          "type": "STRING",
+          "value": "mut"
+        }
+      ]
+    },
+    "mut_modifier": {
+      "type": "FIELD",
+      "name": "mut_modifier",
+      "content": {
+        "type": "STRING",
+        "value": "mut"
+      }
     },
     "block_identifier": {
       "type": "SEQ",
