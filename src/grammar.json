@@ -4440,12 +4440,20 @@
           "value": "abort"
         },
         {
-          "type": "FIELD",
-          "name": "abort",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_expression"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "abort",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -6886,6 +6894,9 @@
     ],
     [
       "break_expression"
+    ],
+    [
+      "abort_expression"
     ]
   ],
   "precedences": [],

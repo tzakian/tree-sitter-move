@@ -43,7 +43,7 @@
     "fields": {
       "abort": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "abort_expression",
