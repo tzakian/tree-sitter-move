@@ -1743,8 +1743,17 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "function_parameter"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "mut_function_parameter"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "function_parameter"
+                      }
+                    ]
                   },
                   {
                     "type": "STRING",
@@ -1757,8 +1766,17 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "function_parameter"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "mut_function_parameter"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "function_parameter"
+                    }
+                  ]
                 },
                 {
                   "type": "BLANK"
@@ -3486,21 +3504,22 @@
         }
       ]
     },
-    "function_parameter": {
+    "mut_function_parameter": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "mut_modifier"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "STRING",
+          "value": "mut"
         },
+        {
+          "type": "SYMBOL",
+          "name": "function_parameter"
+        }
+      ]
+    },
+    "function_parameter": {
+      "type": "SEQ",
+      "members": [
         {
           "type": "CHOICE",
           "members": [
@@ -6317,23 +6336,33 @@
         }
       ]
     },
+    "mut_bind_var": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "mut"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_variable_identifier"
+          },
+          "named": true,
+          "value": "bind_var"
+        }
+      ]
+    },
     "_bind": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "mut_modifier"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "mut_bind_var"
             },
             {
               "type": "ALIAS",
@@ -6418,8 +6447,17 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "bind_field"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "bind_field"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "mut_bind_field"
+                      }
+                    ]
                   },
                   {
                     "type": "STRING",
@@ -6432,8 +6470,17 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "bind_field"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "bind_field"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "mut_bind_field"
+                    }
+                  ]
                 },
                 {
                   "type": "BLANK"
@@ -6464,8 +6511,17 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "bind_field"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "bind_field"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "mut_bind_field"
+                      }
+                    ]
                   },
                   {
                     "type": "STRING",
@@ -6478,8 +6534,17 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "bind_field"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "bind_field"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "mut_bind_field"
+                    }
+                  ]
                 },
                 {
                   "type": "BLANK"
@@ -6494,24 +6559,25 @@
         }
       ]
     },
+    "mut_bind_field": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "mut"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bind_field"
+        }
+      ]
+    },
     "bind_field": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SEQ",
           "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "mut_modifier"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
             {
               "type": "FIELD",
               "name": "field",
@@ -6594,14 +6660,6 @@
           "value": "mut"
         }
       ]
-    },
-    "mut_modifier": {
-      "type": "FIELD",
-      "name": "mut_modifier",
-      "content": {
-        "type": "STRING",
-        "value": "mut"
-      }
     },
     "block_identifier": {
       "type": "SEQ",
@@ -6887,6 +6945,7 @@
       "or_bind_list"
     ],
     [
+      "mut_bind_var",
       "_bind"
     ],
     [
