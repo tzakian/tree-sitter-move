@@ -39,12 +39,14 @@ module.exports = grammar({
     [$.module_access, $._variable_identifier],
     [$.module_access, $._module_identifier],
     [$.modifier, $.native_struct_definition],
-    [$._expression, $._binary_operand],
     [$.bind_list, $.or_bind_list],
     [$.comma_bind_list, $.or_bind_list],
+    [$.break_expression, $.block_identifier],
     [$.or_bind_list],
-    [$.name_expression],
+    [$.mut_bind_var, $._bind],
     [$.module_access],
+    [$.break_expression],
+    [$.abort_expression],
   ],
 
   rules: {
@@ -83,7 +85,20 @@ module.exports = grammar({
 
     // parse top-level decl modifiers
     friend_declaration: $ => seq('friend', field('module', $.friend_access), ';'),
-    modifier: $ => choice(seq('public', optional('(package)'), optional('(friend)')), 'entry', 'native'),
+    modifier: $ => choice(
+      seq(
+        'public',
+        optional(seq(
+          '(',
+          choice(
+            'package',
+            'friend',
+          ),
+          ')',
+        ))),
+      'entry',
+      'native',
+    ),
     ability: $ => choice(
       'copy',
       'drop',
@@ -264,6 +279,7 @@ module.exports = grammar({
     _function_signature: $ => seq(
       optional($.modifier),
       optional($.modifier),
+      optional($.modifier),
       'fun',
       field('name', $._function_identifier),
       optional(field('type_parameters', $.type_parameters)),
@@ -272,7 +288,7 @@ module.exports = grammar({
     ),
     function_parameters: $ => seq(
       '(',
-      sepBy(',', $.function_parameter),
+      sepBy(',', choice($.mut_function_parameter, $.function_parameter)),
       ')',
     ),
 
@@ -438,7 +454,7 @@ module.exports = grammar({
       optional(field('type_arguments', $.type_arguments)),
     )),
     ref_type: $ => seq(
-      field('mutable', choice('&', '&mut')),
+      $._reference,
       $._type
     ),
     tuple_type: $ => seq('(', sepBy(',', $._type), ')'),
@@ -462,18 +478,34 @@ module.exports = grammar({
       // address access
       seq('@', field('member', $.identifier)),
       field('member', alias($._reserved_identifier, $.identifier)),
-      field('member', $.identifier),
+      seq(
+        field('member', $.identifier),
+        optional(field('type_arguments', $.type_arguments)),
+      ),
       seq(
         field('module', $._module_identifier),
+        optional(field('type_arguments', $.type_arguments)),
+        '::',
+        field('member', $.identifier)
+      ),
+      seq(
+        $.module_identity,
+        optional(field('type_arguments', $.type_arguments)),
+      ),
+      seq(
+        $.module_identity,
+        optional(field('type_arguments', $.type_arguments)),
         '::',
         field('member', $.identifier)
       ),
       seq(
         $.module_identity,
         '::',
-        field('member', $.identifier)
+        field('enum_name', $.identifier),
+        optional(field('type_arguments', $.type_arguments)),
+        '::',
+        field('variant', $.identifier)
       ),
-      seq($.module_identity, '::', field('enum_name', $.identifier), '::', field('variant', $.identifier)),
     ),
 
     friend_access: $ => choice(
@@ -483,11 +515,12 @@ module.exports = grammar({
 
     macro_module_access: $ => seq(field("access", $.module_access), "!"),
 
-    module_identity: $ => seq(
-      field('address', choice($.num_literal, $._module_identifier)),
-      '::',
-      field('module', $._module_identifier)
-    ),
+    module_identity: $ =>
+      seq(
+        field('address', choice($.num_literal, $._module_identifier)),
+        '::',
+        field('module', $._module_identifier)
+      ),
 
     type_arguments: $ => seq(
       '<',
@@ -506,9 +539,14 @@ module.exports = grammar({
     ),
     function_type_parameters: $ => seq('|', sepBy(',', $._type), '|'),
 
+    // `mut <function_parameter>`
+    mut_function_parameter: $ => seq(
+      'mut',
+      $.function_parameter,
+    ),
+
     // function parameter grammar
     function_parameter: $ => seq(
-      optional('mut'),
       choice(
         field('name', $._variable_identifier),
         seq('$', field('name', $._variable_identifier)),
@@ -516,7 +554,6 @@ module.exports = grammar({
       ':',
       field('type', $._type),
     ),
-
 
     // type parameter grammar
     type_parameters: $ => seq('<', sepBy1(',', $.type_parameter), '>'),
@@ -562,7 +599,6 @@ module.exports = grammar({
       $.lambda_expression,
       $.if_expression,
       $.while_expression,
-      $.loop_expression,
       $.return_expression,
       $.abort_expression,
       $.assign_expression,
@@ -571,9 +607,10 @@ module.exports = grammar({
       $.binary_expression,
       $.cast_expression,
       $.quantifier_expression,
-      $.identified_expression,
       $.match_expression,
       $.vector_expression,
+      $.loop_expression,
+      $.identified_expression,
     ),
 
     identified_expression: $ => seq(
@@ -613,6 +650,7 @@ module.exports = grammar({
       field('expr', $._expression)
     ),
     lambda_binding: $ => choice(
+      $.comma_bind_list,
       field('bind', $._bind),
       seq(field('bind', $._bind), optional(seq(':', field('ty', $._type)))),
     ),
@@ -652,14 +690,14 @@ module.exports = grammar({
     return_expression: $ => prec.left(seq(
       'return',
       optional(field('label', $.label)),
-      optional(field('return', choice($._expression_term, $._expression)))
+      optional(field('return', $._expression))
     )),
 
     // abort expression
-    abort_expression: $ => seq('abort', field('abort', $._expression)),
+    abort_expression: $ => seq('abort', optional(field('abort', $._expression))),
 
     match_expression: $ => seq(
-      "match",
+      'match',
       '(',
       field('match_scrutiny', $._expression),
       ')',
@@ -702,7 +740,6 @@ module.exports = grammar({
     name_expression: $ => seq(
       optional('::'),
       field('access', $.module_access),
-      optional(field('type_arguments', $.type_arguments)),
     ),
 
     assign_expression: $ => prec.left(PRECEDENCE.assign,
@@ -713,14 +750,6 @@ module.exports = grammar({
       )
     ),
 
-    //      BinOpExp =
-    //          <BinOpExp> <BinOp> <BinOpExp>
-    //          | <UnaryExp>
-    _binary_operand: $ => choice(
-      $._unary_expression,
-      $.binary_expression,
-      $.cast_expression,
-    ),
     binary_expression: $ => {
       const table = [
         [PRECEDENCE.implies, '==>'],
@@ -747,9 +776,9 @@ module.exports = grammar({
 
       let binary_expression = choice(...table.map(
         ([precedence, operator]) => prec.left(precedence, seq(
-          field('lhs', $._binary_operand),
+          field('lhs', $._expression),
           field('operator', alias(operator, $.binary_operator)),
-          field('rhs', $._binary_operand),
+          field('rhs', $._expression),
         ))
       ));
 
@@ -776,7 +805,7 @@ module.exports = grammar({
     )),
     // borrow
     borrow_expression: $ => prec(PRECEDENCE.unary, seq(
-      choice('&', '&mut'),
+      $._reference,
       field('expr', $._expression),
     )),
     // move or copy
@@ -784,6 +813,11 @@ module.exports = grammar({
       choice('move', 'copy'),
       field('expr', $._expression),
     )),
+
+    _reference: $ => choice(
+      $.imm_ref,
+      $.mut_ref,
+    ),
 
     _expression_term: $ => choice(
       $.call_expression,
@@ -808,7 +842,7 @@ module.exports = grammar({
     break_expression: $ => seq(
       'break',
       optional(field('label', $.label)),
-      optional(field('break', $._expression_term))
+      optional(field('break', $._expression))
     ),
     continue_expression: $ => seq(
       'continue',
@@ -873,10 +907,16 @@ module.exports = grammar({
     ),
     at_bind: $ => seq($._variable_identifier, '@', $.bind_list),
     comma_bind_list: $ => seq('(', sepBy(',', $._bind), ')'),
-    or_bind_list: $ => seq(optional('('), sepBy1('|', $._bind), optional(')')),
+    or_bind_list: $ => seq(optional('('), sepBy1('|', seq(optional('('), $._bind, optional(')'))), optional(')')),
+
+    mut_bind_var: $ => seq(
+      'mut',
+      alias($._variable_identifier, $.bind_var),
+    ),
+
     _bind: $ => choice(
-      seq(
-        optional('mut'),
+      choice(
+        $.mut_bind_var,
         alias($._variable_identifier, $.bind_var)
       ),
       $.bind_unpack,
@@ -884,8 +924,7 @@ module.exports = grammar({
       $._literal_value,
     ),
     bind_unpack: $ => seq(
-      $.module_access,
-      optional(field('type_arguments', $.type_arguments)),
+      $.name_expression,
       optional(field('bind_fields', $.bind_fields)),
     ),
     bind_fields: $ => choice(
@@ -894,15 +933,19 @@ module.exports = grammar({
     ),
     _spread_operator: _$ => '..',
     bind_positional_fields: $ => seq(
-      '(', sepBy(',', $.bind_field), ')'
+      '(', sepBy(',', choice($.bind_field, $.mut_bind_field)), ')'
     ),
     bind_named_fields: $ => seq(
-      '{', sepBy(',', $.bind_field), '}'
+      '{', sepBy(',', choice($.bind_field, $.mut_bind_field)), '}'
     ),
-    // not sure if it should be here
+
+    mut_bind_field: $ => seq(
+      'mut',
+      $.bind_field,
+    ),
+
     bind_field: $ => choice(seq(
-      optional('mut'),
-      field('field', choice($._expression)), // direct bind
+      field('field', $.bind_list), // direct bind
       optional(seq(
         ':',
         field('bind', $.bind_list)
@@ -920,9 +963,11 @@ module.exports = grammar({
       // $.vector_literal,
     ),
 
+    imm_ref: $ => '&',
+    mut_ref: $ => seq('&', 'mut'),
     block_identifier: $ => seq($.label, ':'),
     label: $ => seq('\'', $.identifier),
-    address_literal: $ => /@0x[a-fA-F0-9]+/,
+    address_literal: $ => /@(0x[a-fA-F0-9]+|[0-9]+)/,
     bool_literal: $ => choice('true', 'false'),
     num_literal: $ => choice(/[0-9][0-9_]*(?:u8|u16|u32|u64|u128|u256)?/, /0x[a-fA-F0-9_]+/),
     hex_string_literal: $ => /x"[0-9a-fA-F]*"/,
