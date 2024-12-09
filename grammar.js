@@ -46,6 +46,7 @@ module.exports = grammar({
     [$._bind],
     [$.module_access],
     [$.break_expression],
+    [$.abort_expression],
   ],
 
   rules: {
@@ -689,7 +690,7 @@ module.exports = grammar({
     )),
 
     // abort expression
-    abort_expression: $ => seq('abort', field('abort', $._expression)),
+    abort_expression: $ => seq('abort', optional(field('abort', $._expression))),
 
     match_expression: $ => seq(
       'match',
